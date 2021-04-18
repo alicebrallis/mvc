@@ -56,6 +56,29 @@ class Router
             $body = renderView("layout/page.php", $data);
             sendResponse($body);
             return;
+        } else if ($method === "GET" && $path === "/dice") {
+            $callable = new \aloo20\Dice\Game();
+            $callable->playGame();
+            return;
+        } else if ($method === "GET" && $path === "/form/view") {
+            $data = [
+                "header" => "Form",
+                "message" => "Enter and choose a dice value 1 or 2",
+                "action" => url("/form/process"),
+                "output" => $_SESSION["output"] ?? null,
+            ];
+            $body = renderView("layout/form.php", $data);
+            sendResponse($body);
+            return;
+        } else if ($method === "POST" && $path === "/form/process") {
+            if ($_POST["create"] ?? false) {
+                // Do some processing of the form data
+                // for example write to the database.
+            }
+
+            $_SESSION["output"] = $_POST["content"] ?? null;
+            redirectTo(url("/dice"));
+            return;
         }
 
         $data = [

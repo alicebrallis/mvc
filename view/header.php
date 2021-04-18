@@ -21,12 +21,14 @@ use function Mos\Functions\url;
 
 <header>
     <nav>
-        <a href="<?= url("/") ?>">Home</a> |
-        <a href="<?= url("/session") ?>">Session</a> |
-        <a href="<?= url("/debug") ?>">Debug</a> |
-        <a href="<?= url("/twig") ?>">Twig view</a> |
-        <a href="<?= url("/some/where") ?>">some/where</a> |
+        <a href="<?= url("/") ?>">Home</a>
+        <a href="<?= url("/session") ?>">Session</a>
+        <a href="<?= url("/debug") ?>">Debug</a>
+        <a href="<?= url("/twig") ?>">Twig view</a>
+        <a href="<?= url("/some/where") ?>">some/where</a>
         <a href="<?= url("/no/such/path") ?>">Show 404 example</a>
+        <a href="<?= url("/form/view") ?>">Game 21</a>
+        
     </nav>
 </header>
 <main>

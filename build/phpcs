@@ -1,0 +1,20 @@
+
+FILE: /Users/aliceolsson/dbwebb-kurser/mvc/me/game/view/dice.php
+------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+------------------------------------------------------------------------------
+ 58 | ERROR | [x] Short PHP opening tag used; expected "<?php" but found "<?"
+------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+------------------------------------------------------------------------------
+
+
+FILE: /Users/aliceolsson/dbwebb-kurser/mvc/me/game/src/Dice/Game.php
+---------------------------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+---------------------------------------------------------------------------------------------------
+ 14 | ERROR | The class-based use imports must follow the namespace declaration in the file header
+---------------------------------------------------------------------------------------------------
+
+Time: 265ms; Memory: 6MB
+

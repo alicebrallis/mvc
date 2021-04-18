@@ -1,1 +1,3 @@
-/Users/aliceolsson/dbwebb-kurser/mvc/me/game/src/Router/Router.php:21	The method dispatch() has a Cyclomatic Complexity of 13. The configured cyclomatic complexity threshold is 10.
+/Users/aliceolsson/dbwebb-kurser/mvc/me/game/src/Dice/Dicehand.php:25	Avoid unused local variables such as '$len'.
+/Users/aliceolsson/dbwebb-kurser/mvc/me/game/src/Router/Router.php:21	The method dispatch() has a Cyclomatic Complexity of 20. The configured cyclomatic complexity threshold is 10.
+/Users/aliceolsson/dbwebb-kurser/mvc/me/game/src/Router/Router.php:60	Missing class import via use statement (line '60', column '29').

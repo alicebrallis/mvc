@@ -1,17 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400&display=swap');
+
 body {
     overflow-y: scroll;
-    width: 800px;
+    width: 900px;
     margin: 8px auto;
     padding-left: 1em;
     border-left: 1px solid #ccc;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 main {
     min-height: 20em;
+    margin-top: 5em;
+    margin-left: 2em;
 }
 
 footer {
     border-top: 1px solid #ccc;
     min-height: 4em;
     text-align: center;
+}
+header {
+    margin-top: 2em;
+}
+
+nav a {
+    padding: 0.5em 1em 0.5em 1em;
+    margin-left: 0.5em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #000;
+    font-size: 15.5px;
+    border: 1.5px solid rgb(225, 225, 225);
+    border-radius: 0.2em;
+}
+
+h1 {
+    font-size: 25px;
+}
+
+/**
+ * Style a dice using UTF-8 characters.
+ */
+.dice-utf8 .dice-1::after { content: "\2680"; }
+.dice-utf8 .dice-2::after { content: "\2681"; }
+.dice-utf8 .dice-3::after { content: "\2682"; }
+.dice-utf8 .dice-4::after { content: "\2683"; }
+.dice-utf8 .dice-5::after { content: "\2684"; }
+.dice-utf8 .dice-6::after { content: "\2685"; }
+
+.dice-utf8 {
+    font-size: 32px;
 }
