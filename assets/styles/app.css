@@ -1,0 +1,22 @@
+body {
+    margin: 0 auto;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+h1 {
+    border-bottom: 4px double #ccc;
+}
+
+.site-header {
+    height: 150px;
+    background-size: cover;
+}
+
+.site-title {
+    font-size: 2em;
+}
+
