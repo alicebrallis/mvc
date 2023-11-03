@@ -2,18 +2,25 @@
 
 namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use function Symfony\Component\String\u;
+use Symfony\Component\String\UnicodeString;
+use Normalizer;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+
 class LuckyController extends AbstractController
 {
-    #[Route('/lucky/number')]
+    #[Route('/lucky')]
     public function number(): Response
     {
         $number = random_int(0, 100);
 
         return $this->render(
-            'lucky/number.html.twig',
+            'lucky.html.twig',
             ['number' => $number]
         );
     }
@@ -26,17 +33,32 @@ class LuckyController extends AbstractController
         );
     }
 
-    #[Route("/api/lucky/number")]
-    public function jsonNumber(): Response
+    #[Route("/api/quote", name: "quote")]
+    public function jsonQuote(): Response
     {
-        $number = random_int(0, 100);
+  
+    
+        $quotes = array(
+        "Försök att göra någon glad varje dag, om det så bara är dig själv. - Okänd", 
+        "För mycket av det goda kan vara underbart. - Mae West", 
+        "Det viktigaste är inte varifrån man kommer utan vart man är på väg. - Bernie Rhodes");
+        shuffle($quotes);
+        foreach ($quotes as $quote) {
+            //u($quote)->normalize(UnicodeString::NFC);
+        }
+         $currentDate = date('Y-m-d h:i:s');
 
         $data = [
-            'lucky-number' => $number,
-            'lucky-message' => 'Hi there!',
+            
+            'Citat' => $quotes[0],
+            'Datum' => $currentDate,
         ];
 
-        return $this->json($data);
+        
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions($response->getEncodingOptions()| JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        return $response;
+        //return $this->json($data);
     }
 
     #[Route("/about", name: "about")]
@@ -55,5 +77,12 @@ class LuckyController extends AbstractController
     public function report(): Response
     {
         return $this->render('report.html.twig');
+    }
+
+
+    #[Route("/lucky", name: "lucky")]
+    public function lucky(): Response
+    {
+        return $this->render('lucky.html.twig');
     }
 }

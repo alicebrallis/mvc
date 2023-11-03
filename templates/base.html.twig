@@ -4,6 +4,9 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
          <link rel="icon" href="{{ asset('img/glider.svg') }}">
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -14,17 +17,22 @@
         {% endblock %}
     </head>
     <body>
-        <header class="site-header" style="background-image: url({{ asset('img/background.jpg') }})">
-        <span class="site-title">My Symfony Site</span>
+        <header class="site-header" style="background-color: #ccc;">
+        <span class="site-title">My Report Site</span>
     </header>
         <nav>
         <ul>
-            <li><a href="{{ path('about') }}">About</a></li>
-              <li><a href="{{ path('report') }}">Report</a></li>
+            <li><a href="{{ path('about') }}">About mvc</a></li>
+             <li><a href="{{ path('report') }}#kmom01">Kmom01</a></li>
              <li><a href="{{ path('me') }}">About me</a></li>
+            <li><a href="{{ path('lucky') }}">Lucky number</a></li>
+            <li><a href="{{ path('quote') }}">Quote</a></li>
         </ul>
     </nav>
         <main>{% block body %}{% endblock %}</main>
-        <footer>{% block footer %}Footer{% endblock %}</footer>
+        <footer>{% block footer %}
+       <h5>Denna sidan är Copyright © av mig. <br> Manualer: <br><a href="{{ 'https://html.spec.whatwg.org/' }}">HTML standard</a><br><a href="{{ 'https://www.php.net/manual/en/index.php' }}">PHP</a><h5>
+        
+        {% endblock %}</footer>
     </body>
 </html>
