@@ -1,0 +1,13 @@
+{# templates/shuffle_deck.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Shuffled Deck</h1>
+
+    <ul>
+        {% for card in shuffled_deck %}
+            <li>{{ card.color }} - {{ card.value }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

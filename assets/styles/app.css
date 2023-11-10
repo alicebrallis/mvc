@@ -79,3 +79,11 @@ h5 {
 h1 {
     line-height: 15mm;
 }
+
+input {
+    font-size: 1em;
+}
+
+.die {
+    font-size: 2em;
+}

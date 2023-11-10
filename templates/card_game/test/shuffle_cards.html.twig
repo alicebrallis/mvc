@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h1>Shuffled deck of Cards</h1>
+
+    <div class="card-deck">
+        {% set previousColor = null %}
+        {% set previousValue = null %} {# Variabel för att hålla koll på föregående färg och värde #}
+        {% for card in cards %}
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ card.getColor() }} - {{ card.getValue() }}
+                    </p>
+                </div>
+            </div>
+            
+            {% if previousColor is not null and (previousColor != card.getColor() or previousValue != card.getValue()) %}
+                <br> {# Lägg till radbryt om färgen eller värdet ändras #}
+            {% endif %}
+
+            {% set previousColor = card.getColor() %}
+            {% set previousValue = card.getValue() %} {# Uppdatera föregående färg och värde #}
+        {% endfor %}
+    </div>
+{% endblock %}

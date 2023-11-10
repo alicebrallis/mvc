@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h1>Deck of Cards</h1>
+
+    <div class="card-deck">
+        {% set previousColor = null %}
+        {% set previousValue = null %}
+        {% for card in cards %}
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ card.getColor() }} - {{ card.getValue() }}
+                    </p>
+                </div>
+            </div>
+            
+            {% if previousColor is not null and (previousColor != card.getColor() or previousValue != card.getValue()) %}
+                <br>
+            {% endif %}
+
+            {% set previousColor = card.getColor() %}
+            {% set previousValue = card.getValue() %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Controller;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use function Symfony\Component\String\u;
 use Symfony\Component\String\UnicodeString;
 use Normalizer;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+use function Symfony\Component\String\u;
 
 class LuckyController extends AbstractController
 {
@@ -36,27 +36,27 @@ class LuckyController extends AbstractController
     #[Route("/api/quote", name: "quote")]
     public function jsonQuote(): Response
     {
-  
-    
+
+
         $quotes = array(
-        "Försök att göra någon glad varje dag, om det så bara är dig själv. - Okänd", 
-        "För mycket av det goda kan vara underbart. - Mae West", 
+        "Försök att göra någon glad varje dag, om det så bara är dig själv. - Okänd",
+        "För mycket av det goda kan vara underbart. - Mae West",
         "Det viktigaste är inte varifrån man kommer utan vart man är på väg. - Bernie Rhodes");
         shuffle($quotes);
         foreach ($quotes as $quote) {
             //u($quote)->normalize(UnicodeString::NFC);
         }
-         $currentDate = date('Y-m-d h:i:s');
+        $currentDate = date('Y-m-d h:i:s');
 
         $data = [
-            
+
             'Citat' => $quotes[0],
             'Datum' => $currentDate,
         ];
 
-        
+
         $response = new JsonResponse($data);
-        $response->setEncodingOptions($response->getEncodingOptions()| JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         return $response;
         //return $this->json($data);
     }

@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}JSON Game{% endblock %}
+
+{% block body %}
+    <h1>Sorted Decks</h1>
+
+    {% set jsonData = '{"sorted_decks": [{"color": "Hjärter", "value": "2"}, {"color": "Hjärter", "value": "3"}, {"color": "Spader", "value": "Kung"}]}' %}
+
+    {% set sortedDecks = jsonData|json_decode %}
+
+    <ul>
+        {% for card in sortedDecks.sorted_decks %}
+            <li>{{ card.color }} - {{ card.value }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

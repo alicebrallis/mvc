@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>Draw a Card</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">
+                {{ drawnCard.getColor() }} - {{ drawnCard.getValue() }}
+            </p>
+            <p>Remaining Cards in the Deck: {{ numCards }}</p>
+        </div>
+    </div>
+{% endblock %}

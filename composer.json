@@ -1,4 +1,6 @@
 {
+    "name": "your-vendor/your-project",
+    "description": "Your project description",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
@@ -74,12 +76,11 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ]
+        "csfix": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src",
+        "csfix:dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src --dry-run -v",
+        "csfix:src-dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src --dry-run -v",
+        "csfix:tests": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix tests",
+        "csfix:tests-dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix tests --dry-run -v"
     },
     "conflict": {
         "symfony/symfony": "*"
