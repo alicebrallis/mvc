@@ -82,7 +82,7 @@ class Deck extends Card
     {
         usort($this->cards, function ($a, $b) {
             $colorsOrder = ['Hjärter', 'Ruter', 'Klöver', 'Spader'];
-            $valuesOrder = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Knekt', 'Dam', 'Kung', 'Ess'];
+            $valuesOrder = ['Ess', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Knekt', 'Dam', 'Kung'];
 
             $colorComparison = array_search($a->getColor(), $colorsOrder) - array_search($b->getColor(), $colorsOrder);
 
@@ -90,9 +90,16 @@ class Deck extends Card
                 return $colorComparison;
             }
 
-            return array_search($a->getValue(), $valuesOrder) - array_search($b->getValue(), $valuesOrder);
+            $aValueOrder = array_search($a->getValue(), $valuesOrder);
+            $bValueOrder = array_search($b->getValue(), $valuesOrder);
+
+            return $aValueOrder - $bValueOrder;
         });
     }
+
+
+
+
 
     public function getRemovedCard()
     {

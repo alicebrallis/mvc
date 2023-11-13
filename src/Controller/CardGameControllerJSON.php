@@ -45,9 +45,16 @@ class CardGameControllerJSON extends AbstractController
     public function api(): Response
     {
         $quoteUrl = $this->generateUrl('quote');
+        $deckUrl = $this->generateUrl('api_deck_get');
+        $deckShuffle = $this->generateUrl('shuffle_api_deck');
+        $deckDraw  = $this->generateUrl('draw_one_card');
+
 
         return $this->render('card_game_json/card_json.html.twig', [
             'quote_url' => $quoteUrl,
+            'deck_url' => $deckUrl,
+            'deck_shuffle' => $deckShuffle,
+            'deck_draw' => $deckDraw,
         ]);
     }
 
@@ -59,7 +66,7 @@ class CardGameControllerJSON extends AbstractController
         if ($deck === null) {
             $deck = new Deck();
         }
-
+        $deck->sort();
         $cards = $deck->getCards();
 
         $cardsData = array_map(function ($card) {
@@ -74,6 +81,7 @@ class CardGameControllerJSON extends AbstractController
 
         return $jsonResponse;
     }
+
 
 
     #[Route("/api/deck/shuffle", name: "shuffle_api_deck", methods: ["POST", "GET"])]
