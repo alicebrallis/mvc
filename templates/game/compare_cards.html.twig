@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Pig Game{% endblock %}
+
+{% block body %}
+
+
+  <h1>Resultat för omgången</h1>
+
+    <h2>Spelarens resultat</h2>
+    <p>Fick totalt: {{ drawnCardsPlayer.totalValue }} poäng</p>
+
+    <h2>Bankirens resultat</h2>
+    <p>Fick totalt: {{ drawnCardsBank.totalValueBank }} poäng</p>
+
+    {% if winner %}
+        <h2>Resultat</h2>
+        <p>{{ winner }}</p>
+    {% else %}
+        <h2>No Winner</h2>
+        <p>It's a tie or no valid winner condition met.</p>
+    {% endif %}
+
+    <p>Klicka på <b>Restart</b> för att börja om spelet</p>
+
+    <form method="post" action="">
+    <p>
+        <input type="submit" name="restart" value="Restart"
+            onClick="this.form.action='{{ restartUrl }}';this.form.method='get';"
+        >
+    </p>
+    <h2>Resultatet i JSON-struktur: </h2>
+     Länk till API/game - visar upp den aktuella ställningen för spelet i en JSON struktur <a href="{{ path('api_game') }}">API/game</a><br>
+</form>
+
+    {# Implementera din logik för att jämföra resultaten och visa vinnaren här #}
+
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Pig Game{% endblock %}
+
+{% block body %}
+    <h1>21 card game</h1>
+    <h5>Spelregler</h5>
+    <p>Kortspelet 21 går ut på att med två eller flera kort försöka uppnå det sammanlagda värdet 21, eller komma så
+    nära som möjligt utan att överskrida 21. Essen är värda valfritt 1 eller 14, kungarna 13, damerna 12, knektarna 11. Nummerkorten har samma 
+    värden som valören. 
+    
+    <br> En av spelarna utses till bankir. Du som spelare spelar mot bankiren. Spelaren tar ett kort och kortet visas.
+    Spelaren kan välja att stanna eller ta ytterligare ett kort. Om spelarens summa av kort blir över 21 vinner bankiren. När spelaren har stannat är det bankirens tur.
+    Bankiren är inte medveten om spelarens korthand. Bankiren plockar kort tills den stannar eller har över 21. Bankiren vinner vid lika 
+    eller om bankiren har mer än spelaren. 
+    
+    <br> Spelaren vinner om summan av korten är 21 eller om bankiren har över 21. Därefter kan man påbörja en ny omgång.</h5>
+
+    <p>This is a classical 21 card game. You can read more on 
+    the <a href="https://sv.wikipedia.org/wiki/Tjugoett_(kortspel)"> 
+    basics of the game on Wikipedia</a>.</p>
+
+
+    <p>Länk till sidan som visar problemlösning med flödesschema och pseudokod för spelet 21: <a href="{{ path('game_doc') }}">game/doc</a><br></p>
+
+        <h5>Nu kan du börja spela, klicka på knappen: <a class="button" href="{{ init }}".>Spelet 21</a></p>
+{% endblock %}

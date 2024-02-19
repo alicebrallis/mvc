@@ -63,9 +63,11 @@ class CardGameControllerJSON extends AbstractController
     {
         $deck = $session->get('deck', null);
 
-        if ($deck === null) {
+        if (!$deck instanceof Deck) {
             $deck = new Deck();
+            $session->set('deck', $deck);
         }
+
         $deck->sort();
         $cards = $deck->getCards();
 
@@ -82,34 +84,35 @@ class CardGameControllerJSON extends AbstractController
         return $jsonResponse;
     }
 
-
-
     #[Route("/api/deck/shuffle", name: "shuffle_api_deck", methods: ["POST", "GET"])]
     public function shuffleApiDeck(Request $request, SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck', null);
 
-        if ($deck === null) {
+        if (!$deck instanceof Deck) {
             $deck = new Deck();
         }
-        $deck->shuffle();
 
-        $session->set('deck', $deck);
+        if ($deck instanceof Deck) {
+            $deck->shuffle();
+            $session->set('deck', $deck);
 
-        $cards = $deck->getCards();
+            $cards = $deck->getCards();
 
-        $cardsData = array_map(function ($card) {
-            return [
-                'color' => $card->getColor(),
-                'value' => $card->getValue(),
-            ];
-        }, $cards);
+            $cardsData = array_map(function ($card) {
+                return [
+                    'color' => $card->getColor(),
+                    'value' => $card->getValue(),
+                ];
+            }, $cards);
 
+            $jsonResponse = new JsonResponse(['shuffled_deck' => $cardsData]);
+            $jsonResponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $jsonResponse;
+        }
 
-        $jsonResponse = new JsonResponse(['shuffled_deck' => $cardsData]);
-        $jsonResponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
-        return $jsonResponse;
     }
+
 
     #[Route("/api/deck/draw", name: "draw_one_card", methods: ["POST", "GET"])]
     public function drawOneCard(Request $request, SessionInterface $session): JsonResponse
@@ -128,35 +131,14 @@ class CardGameControllerJSON extends AbstractController
     }
     private function getOrCreateDeck(SessionInterface $session): Deck
     {
-        return $session->get('deck', new Deck());
-    }
+        $deck = $session->get('deck', null);
 
-    private function drawCardsFromDeck(Deck $deck, int $number, SessionInterface $session): JsonResponse
-    {
-        $drawnCards = [];
-
-        for ($i = 0; $i < $number; $i++) {
-            if (count($deck->getCards()) === 0) {
-                return $this->json(['message' => 'No cards left in the deck.'], JsonResponse::HTTP_BAD_REQUEST);
-            }
-
-            $drawnCard = $deck->getOneCard();
-            $drawnCards[] = [
-                'color' => $drawnCard->getColor(),
-                'value' => $drawnCard->getValue(),
-            ];
+        if (!$deck instanceof Deck) {
+            $deck = new Deck();
+            $session->set('deck', $deck);
         }
 
-        $this->updateSessionDeck($deck, $session);
-
-        return $this->json([
-            'drawn_cards' => $drawnCards,
-            'remaining_cards' => count($deck->getCards()),
-        ]);
+        return $deck;
     }
 
-    private function updateSessionDeck(Deck $deck, SessionInterface $session): void
-    {
-        $session->set('deck', $deck);
-    }
 }

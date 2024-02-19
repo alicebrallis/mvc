@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Pig Game{% endblock %}
+
+{% block body %}
+<p>Nu är det <b>Spelarens</b> tur</p>
+<p>Om du klickar på <b>Draw</b> kommer ett nytt kort dras och läggas till på din existerande hög. 
+<p>Om du drar <b>Ess</b>-kortet så kommer du få välja värde 1 eller 14 och sedan för fortsätta spela så väljer du att klicka på <b>Draw</b></p>
+<p>Om du klickar på <b>Save</b> kommer du välja att stanna och spara poängen för omgången och sen är det <b>bankirens</b> tur att spela</p>
+<p>Om du klickar på <b>Restart</b> kommer du välja att börja om spelet</p>
+<p>När omgången är slut är det <b>bankirens</b> tur</p>
+<p>Runda: {{ cardRound }}</p>
+<p>Total poäng: {{ totalValue }}</p>
+<p>Kortet: {{ cardData.color }} {{ cardData.value }}</p>
+<p>{{ gameOver }}</p>
+{% set formSubmitted = false %}
+<form method="post" action="{{ path('draw_card') }}" id="draw">
+    <p>
+        {% if not gameOver %}
+            <input type="submit" name="drawn_cards" value="Draw"
+                onClick="this.form.action='{{ drawUrl }}';">
+            
+            <input type="submit" name="save" value="Save/Stop"
+                onClick="this.form.action='{{ saveUrl }}';">
+            
+            {% if cardData.value == 'Ess' %}
+                {% if aceValue is not defined and aceValue1 is not defined %}
+                    <label for="aceValues">Välj värdet för ess (1 eller 14):</label>
+                    <select name="aceValues" id="aceValues">
+                        <option value="14">14</option>
+                        <option value="1">1</option>
+                    </select>
+                    <input type="hidden" name="selectedAceValue" id="selectedAceValue" value="">
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+        <input type="submit" name="restart" value="Restart" onClick="this.form.action='{{ restartUrl }}';this.form.method='get';">
+    </p>
+
+    <script>
+        var aceValuesSelect = document.getElementById('aceValues');
+        var selectedAceValueInput = document.getElementById('selectedAceValue');
+
+        aceValuesSelect.addEventListener('change', function () {
+            selectedAceValueInput.value = aceValuesSelect.value;
+        });
+    </script>
+</form>
+
+{% endblock %}
+

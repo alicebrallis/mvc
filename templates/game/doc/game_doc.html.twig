@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+{% block title %}Game doc{% endblock %}
+
+{% block body %}
+
+<h2>Game doc </h2>
+
+<p>Detta är mitt flödesschema för spelet 21 som representerar hur jag tänker lösa grunderna i spelet.</p>
+ <img class="game_doc_img" src="{{ asset('img/gamedocs.jpg') }}" alt="">
+
+ <h5>Min pseudokod för delar av spelet 21</h5>
+
+ <p><b>1. Klasser för att representera spelkort och kortlek:</b></p>
+ <p>Klass: Card
+Syfte: Representerar ett enskilt spelkort med färg och värde.
+<br>
+Klass: Deck
+Syfte: Hanterar en hel kortlek med alla olika spelkort.
+</p>
+<p><b>2. Klasser för att representera spelaren och banken: </b></p>
+
+<p>Klass: Player
+Syfte: Representerar en spelare i spelet.
+<br>
+Klass: Dealer
+Syfte: Representerar banken eller dealern i spelet.
+</p>
+
+<p><b>3. Klass för att hantera spelets logik:</b></p>
+<p>Klass: Game <br>
+Syfte: Hanterar huvudlogiken för spelet, inklusive spelomgångar, kortdragning och jämförelse av poäng.
+</p>
+
+<p><b>4. Pseudokod för en spelomgång:</b></p>
+<p>1. Skapa en ny kortlek och blanda den.<br>
+2. Skapa en spelare och en bank (dealer).<br>
+3. Spelaren tar ett kort från kortleken.<br>
+4. Visa spelarens hand och totala poäng.<br>
+5. Spelaren får välja att ta ett till kort eller stanna.<br>
+6. Om spelaren stannar, gå till steg 7. Annars, gå tillbaka till steg 3.<br>
+7. Banken drar kort tills dess att dess poäng är minst 17.<br>
+8. Visa bankens hand och totala poäng.<br>
+9. Jämför spelarens och bankens poäng för att avgöra vinnaren.<br>
+10. Upprepa spelomgången om spelaren vill spela igen.<br>
+</p>
+{% endblock %}

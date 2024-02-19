@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block title %}Pig Game{% endblock %}
+
+{% block body %}
+<h1>21 game [START]</h1>
+<p>För att börja spela spelet kan du börja med att dra ett kort från kortleken:</p>
+
+<form method="post" action="">
+    <input type="hidden" name="drawn_card_value" value="Dra ett kort">
+    <input type="submit" name="do_it" value="Dra ett kort">
+</form>
+
+{% endblock %}

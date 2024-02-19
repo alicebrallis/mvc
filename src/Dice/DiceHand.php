@@ -6,11 +6,12 @@ use App\Dice\Dice;
 
 class DiceHand
 {
-    private $hand = [];
+    /** @var Dice[] */
+    private array $hand = [];
 
     public function add(Dice $die): void
     {
-        $this->hand[] = $die; //Injection
+        $this->hand[] = $die;
     }
 
     public function roll(): void
@@ -25,15 +26,29 @@ class DiceHand
         return count($this->hand);
     }
 
-    public function getValues(): array
+    /**
+     * @return array<int>|null
+     */
+    public function getValues(): ?array
     {
+        if (empty($this->hand)) {
+            return null;
+        }
+
         $values = [];
         foreach ($this->hand as $die) {
-            $values[] = $die->getValue();
+            $value = $die->getValue();
+            if ($value !== null) {
+                $values[] = $value;
+            }
         }
         return $values;
     }
 
+
+    /**
+     * @return string[]
+     */
     public function getString(): array
     {
         $values = [];

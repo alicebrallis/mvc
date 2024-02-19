@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+{% block title %}Pig Game{% endblock %}
+
+{% block body %}
+  <h1>API Game Information</h1>
+    <div id="game-api">
+        <h2>Total Value: {{ api_data.total_value }}</h2>
+        <h3>Card Data:</h3>
+        <ul>
+            <li>Color: {{ api_data.card_data.color }}</li>
+            <li>Value: {{ api_data.card_data.value }}</li>
+        </ul>
+        <h2>Total Value Bank: {{ api_data.total_value_bank }}</h2>
+        <h3>Card Data Bank:</h3>
+        <ul>
+            <li>Color: {{ api_data.card_data_bank.color }}</li>
+            <li>Value: {{ api_data.card_data_bank.value }}</li>
+        </ul>
+        <h3>Result Player:</h3>
+        <ul>
+            <li>Card Data:</li>
+            <ul>
+                <li>Color: {{ api_data.result_player.cardData.color }}</li>
+                <li>Value: {{ api_data.result_player.cardData.value }}</li>
+            </ul>
+            <li>Game Over: {{ api_data.result_player.gameOver }}</li>
+            <li>Total Value: {{ api_data.result_player.totalValue }}</li>
+        </ul>
+        <h3>Result Bank:</h3>
+        <ul>
+            <li>Card Data Bank:</li>
+            <ul>
+                <li>Color: {{ api_data.result_bank.cardDataBank.color }}</li>
+                <li>Value: {{ api_data.result_bank.cardDataBank.value }}</li>
+            </ul>
+            <li>Game Over: {{ api_data.result_bank.gameOver }}</li>
+            <li>Total Value Bank: {{ api_data.result_bank.totalValueBank }}</li>
+        </ul>
+    </div>
+
+</html>
+
+
+{% endblock %}

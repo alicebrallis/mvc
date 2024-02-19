@@ -58,7 +58,7 @@ class LuckyController extends AbstractController
         $response = new JsonResponse($data);
         $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         return $response;
-        //return $this->json($data);
+
     }
 
     #[Route("/about", name: "about")]

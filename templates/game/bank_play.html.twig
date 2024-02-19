@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Pig Game{% endblock %}
+
+{% block body %}
+<p>Nu är det <b>Bankirens</b> tur</p>
+<p>Om du klickar på <b>Draw</b> kommer ett nytt kort dras till och läggas till på din existerande hög</p>
+<p>Om du klickar på <b>Restart</b> kommer du välja att börja om spelet</p>
+<p>Om du klickar på <b>Result</b> kommer du avsluta omgången och se vem som vann</p>
+<p>Runda: {{ cardRoundBank }}</p>
+<p>Total poäng: {{ totalValueBank }}</p>
+<p>Kortet: {{ cardDataBank.color }} {{ cardDataBank.value }}</p>
+<p>{{ gameOver }}</p>
+
+<form method="post" action="">
+    <p>
+        <input type="submit" name="drawn_cards_bank" value="Draw"
+            onClick="this.form.action='{{ drawUrlBank }}';"
+              {% if gameOver %} disabled {% endif %}>
+
+        <input type="submit" name="restart" value="Restart"
+            onClick="this.form.action='{{ restartUrl }}';this.form.method='get';"
+        >
+
+        <input type="submit" name="result" value="Result"
+            onClick="this.form.action='{{ resultUrl }}';this.form.method='get';"
+        >
+    </p>
+</form>
+
+{% endblock %}
