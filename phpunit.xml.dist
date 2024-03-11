@@ -24,10 +24,16 @@
     </testsuites>
 
     <coverage processUncoveredFiles="true">
+    <report>
+  <clover outputFile="docs/coverage.clover"/>
+  <html outputDirectory="docs/coverage" lowUpperBound="35" highLowerBound="70"/>
+</report>
         <include>
             <directory suffix=".php">src</directory>
         </include>
     </coverage>
+
+    
 
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
