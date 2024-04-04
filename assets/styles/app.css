@@ -97,3 +97,87 @@ a.button {
     border-radius: 0.5mm;
     margin-left: 0.5em;
 }
+
+.showbooks {
+    margin-top: 0.5em;
+    margin-bottom: 4.4em;
+}
+
+button {
+    margin-top: 1em;
+    font-size: 16px;
+    background-color: #0a3869;
+    color: white;
+    border: none;
+    border-radius: 1mm;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+form[action^="{{ path('delete_book') }}"] button[type="submit"] {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+}
+form.showbooks button[type="submit"] {
+    font-size: 16px;
+    background-color: #0a3869;
+    color: white;
+    border: none;
+    border-radius: 1mm;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+/* public/css/new_book_form_styles.css */
+
+.new-book-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.new-book-form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.new-book-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #0a3869;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.new-book-form button[type="submit"]:hover {
+    background-color: #0a3869;
+}
+
+.new-book-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.new-book-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+

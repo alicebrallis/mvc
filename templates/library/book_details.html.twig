@@ -1,0 +1,31 @@
+{# templates/library/book_details.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Detaljer om bok{% endblock %}
+
+{% block body %}
+    <h1>{{ book.title }}</h1>
+    <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+    <p><strong>Författare:</strong> {{ book.author }}</p>
+    <img src="{{ asset(book.image) }}" alt="{{ book.title }}" style="max-width: 200px;"><br>
+
+
+    {# Uppdatera knapp #}
+   <form action="{{ path('edit_book', {'id': book.id}) }}" method="get" style="display: inline;">
+    <button type="submit" class="btn btn-primary">Uppdatera</button>
+</form>
+
+
+    {# Radera knapp #}
+    <form action="{{ path('delete_book', {'id': book.id}) }}" method="post" style="display: inline;">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
+        <button type="submit">Radera</button>
+    </form>
+    <form class="showbooks" action="{{ path('all_books') }}" method="get">
+        <button type="submit" class="btn btn-primary">Visa alla böcker</button>
+    </form>
+
+{% endblock %}

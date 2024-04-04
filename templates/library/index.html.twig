@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Böcker{% endblock %}
+
+{% block body %}
+    <h1>Böcker i bibliotek</h1>
+    <p>Klicka på knappen <b>Visa alla böcker</b> för att visa alla böcker som finns i biblioteket</p>
+  <td>
+    <form action="{{ path('all_books') }}" method="get">
+        <button type="submit" class="btn btn-primary">Visa alla böcker</button>
+    </form>
+</td>
+
+{% endblock %}

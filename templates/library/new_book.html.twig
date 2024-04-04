@@ -1,0 +1,17 @@
+{# templates/library/new_book.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Lägg till ny bok{% endblock %}
+
+{% block body %}
+    <h1>Lägg till ny bok</h1>
+
+    {{ form_start(form, {'attr': {'class': 'new-book-form'}}) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.isbn) }}
+    {{ form_row(form.author) }}
+    {{ form_row(form.image) }}
+    <button type="submit">Lägg till</button>
+    {{ form_end(form) }}
+{% endblock %}

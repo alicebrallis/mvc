@@ -48,13 +48,21 @@ class CardGameControllerJSON extends AbstractController
         $deckUrl = $this->generateUrl('api_deck_get');
         $deckShuffle = $this->generateUrl('shuffle_api_deck');
         $deckDraw  = $this->generateUrl('draw_one_card');
+        $book  = $this->generateUrl('draw_one_card');
+        $booksUrl = $this->generateUrl('api_library_books');
+        $isbn = '978014143966';
 
+        $booksUrlIsbn = $this->generateUrl('api_library_book_by_isbn', [
+            'isbn' => $isbn,
+        ]);
 
         return $this->render('card_game_json/card_json.html.twig', [
             'quote_url' => $quoteUrl,
             'deck_url' => $deckUrl,
             'deck_shuffle' => $deckShuffle,
             'deck_draw' => $deckDraw,
+            'books_url' => $booksUrl,
+            'books_url_isbn' => $booksUrlIsbn,
         ]);
     }
 

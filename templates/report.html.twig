@@ -54,4 +54,46 @@ Förbättringspotentialen i min kod ligger främst i att strukturera om koden f�
 Hittills har min upplevelse av att arbeta med Symfony varit bra. Ramverket har många användbara verktyg och funktioner som gör det enklare att utveckla webbapplikationer och följa bästa praxis. Jag gillar speciellt att Symfony har en tydlig struktur och omfattande dokumentation, vilket gör det lättare att förstå och använda.</p>
 <h5>Vilken är din TIL för detta kmom? </h5>
 <p>Under detta kursmoment lärde jag mig vikten av att modellera och planera min kod innan jag börjar implementera den. Att använda flödesdiagram och pseudokod hjälpte mig att skapa en klar struktur och förståelse för problemet innan jag hoppade in i kodningen. Detta har hjälpt mig att arbeta mer effektivt och undvika vanliga misstag när jag utvecklar applikationer.</p>
+
+
+<h1>Kmom04</h1>
+<h5>Berätta hur du upplevde att skriva kod som testar annan kod med PHPUnit och hur du upplever phpunit rent allmänt.</h5>
+<p>Jag tyckte det var spännande att testa koden som jag skrivit. Det fick mig att se på koden annorlunda och med ett kritiskt öga. 
+Tyckte det var intressant då det fick mig att inse brister i koden som jag nog inte hade upptäckt annars. Php unit känns som ett bra 
+testverktyg och jag uppskattar verkligen coverage rapporten som generas av verktyget. Att analysera och kolla igenom den hjälpte mig
+förstå vad testerna täckte. </p>
+<h5>Hur väl lyckades du med kodtäckningen av din kod, lyckades du nå mer än 90% kodtäckning?</h5>
+<p>Jag lyckades att uppnå 100% kodtäckning, vilket var roligt men tog lång tid. Det var mycket trial and error på vägen dit.  </p>
+<h5>Upplever du din egen kod som “testbar kod” eller finns det delar i koden som är mer eller mindre testbar och finns det saker som kan göras för att förbättra kodens testbarhet?</h5>
+<p>Det finns delar i min kod som är testbara och det finns delar som inte är speciellt testbara. Upplevde att det var svårt att testa enskilda enheter i koden separat på grund av starka beroenden
+till andra komponenter. För att göra koden mer testbar hade jag kunnat omstrukturera koden lite för minska beroenden och göra den mer modulär.
+Sammanfattningvis finns det utrymme för förnättring när det gäller kodens testbarhet.  </p>
+<h5>Valde du att skriva om delar av din kod för att förbättra den eller göra den mer testbar, om så berätta lite hur du tänkte.</h5>
+<p>Nej, jag har inte genomfört stora ändringar i koden för att förbättra dess testbarhet. Jag inser dock att det finns
+utrymme för förbättringar på den fronten. En del av koden är ganska komplex och har sammanflätande beroenden, vilket gör det
+svårt att skriva effektiva enhetstester. Om jag skulle göra ändringar hade det varit att göra den mer modulär. Det hade nog ökat kodens stabilitet och tillförlitlighet.</p>
+<h5>Fundera över om du anser att testbar kod är något som kan identifiera “snygg och ren kod”.</h5>
+<p>Ja, jag anser att testbar kod är en indikator på snygg och ren kod. Jag tänker att testbar kod är modulär, tydlig och välstrukturerad eftersom 
+det är lättare att skriva tester för en sån typ av kod. Genom att skriva enhetsteser så bryts koden ned i mindre
+enheter och klara ansvarsområden, vilket leder till mer underhållbar kod. Jag skulle säga att testbar kod är nog synonymt med snygg och ren kod eftersom båda egenskaperna främjar kvalité.</p>
+<h5>Vilken är din TIL för detta kmom?</h5>
+<p>Mitt TIL för detta kmom är att testbar kod är viktigt för att upprätthålla en kod av kvalité. Genom att skriva enhetsteserna så kan man
+säkerhetsställa att koden fungerar som förväntat. Testningen främjar också en bättre praxis som exempelvis modulär kod, tydlig struktur, lättläslighet, vilket i sin tur 
+leder till en mer robust och hållbar kodbas.</p>
+
+
+<h1>kmom05</h1>
+<h5>Gick det bra att jobba igenom övningen med Symfony och Doctrine. Något särskilt du tänkte/reagerade på under övningen?
+</h5>
+<p>Ja, det gick bra att jobba igenom övningen med Symfony och Doctrine. Det var en givande upplevelse att arbeta med dessa ramverk för att skapa en applikation med CRUD-funktionalitet för en boklista. Jag fann Symfony och Doctrine vara kraftfulla verktyg som gör det relativt enkelt att bygga och hantera webbapplikationer.</p>
+<h5>Berätta om din applikation och hur du tänkte när du byggde upp den. Tänkte du något speciellt på användargränssnittet?</h5>
+<p> När jag skapade applikationen ville jag att den skulle vara enkel och lätt att använda. Jag använde Twig-templating för att göra användargränssnittet snyggt och tydligt. Jag försökte att hålla allt enhetligt så att det var lätt att förstå för användarna.</p>
+<h5>Gick det bra att jobba med ORM i CRUD eller vad anser du om det, jämför gärna med andra sätt att jobba med databaser?
+</h5>
+<p>Det var smidigt att jobba med ORM i CRUD. Doctrine ORM gör det enkelt att jobba med databaser genom att använda vanliga PHP-objekt. Det sparar tid och gör koden mer läsbar.</p>
+<h5>Vad är din uppfattning om ORM så här långt och relatera gärna till andra sätt att jobba med applikationskod mot databaser?</h5>
+<p> Jag tycker att ORM är bra. Det gör att man kan jobba med databaser på ett mer naturligt sätt utan att behöva skriva SQL-frågor. Jämfört med att använda SQL direkt, tycker jag att ORM är mer användarvänligt och enklare.</p>
+<h5>Vilken är din TIL för detta kmom?</h5>
+<p> En viktig sak jag lärde mig är hur användbart det är att använda Symfony och Doctrine för att bygga webbapplikationer snabbt och enkelt. Dessa verktyg gör utvecklingsprocessen smidigare och låter mig fokusera mer på att bygga själva applikationen istället för att hantera databasen.
+</p>
 {% endblock %}

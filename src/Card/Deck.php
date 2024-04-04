@@ -219,9 +219,9 @@ class Deck extends Card
         } elseif ($totalValuePlayer === $totalValueBank) {
             return "Ingen vinnare denna gång";
         }
-    /*     } elseif ($totalValueBank > 21 && $totalValuePlayer > 21) {
-            return "Ingen vinnare denna gång";
-        } */
+        /*     } elseif ($totalValueBank > 21 && $totalValuePlayer > 21) {
+                return "Ingen vinnare denna gång";
+            } */
 
         return "Ingen vinnare denna gång";
     }
