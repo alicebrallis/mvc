@@ -23,9 +23,7 @@ class CardGameController extends AbstractController
     {
         $session = $request->getSession();
         $session->remove('deck');
-        $deck = $session->get('deck', null);
-
-        $cards = [];
+        $deck = $session->get('deck', []);
         $uniqueCards = [];
 
         if ($deck instanceof Deck) {

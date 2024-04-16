@@ -16,4 +16,34 @@ class DiceHandTest extends TestCase
         
         $this->assertEquals(2, $hand->getNumberDices());
     }
+    public function testRoll(): void
+    {
+        $hand = new DiceHand();
+        $hand->add(new Dice());
+        $hand->add(new Dice());
+
+        $hand->roll();
+        foreach ($hand->getValues() as $value) {
+            $this->assertGreaterThanOrEqual(1, $value);
+            $this->assertLessThanOrEqual(6, $value);
+        }
+    }
+
+    public function testGetValuesReturnsArrayOrNullWhenHandIsEmpty(): void
+    {
+        $hand = new DiceHand();
+        $result = $hand->getValues();
+        $this->assertNull($result);
+    }
+
+    public function testGetStringReturnsArrayOfStrings(): void
+    {
+        $hand = new DiceHand();
+        $hand->add(new Dice());
+        $hand->add(new Dice());
+
+        $result = $hand->getString();
+        $this->assertIsArray($result);
+        $this->assertContainsOnly('string', $result);
+    }
 }

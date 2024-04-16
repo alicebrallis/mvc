@@ -1,0 +1,101 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Rapport{% endblock %}
+
+
+{% block body %}
+
+<div class="report">
+    <h1>Introduktion</h1>
+    <p>I denna introduktion tänker jag sammanfatta kort om de sex "C" som påverkar kodens kvalité.  Utöver detta kommer jag att exemplifiera med några mätvärden som är kopplad till egen kod och relatera det till kodkvalité. </p>
+    <h4>Codestyle</h4>
+    <p>Codestyle handlar om hur koden är skriven och formaterad. Det inkluderar saker som hur variabler namnges, 
+        hur kommentarer används, hur indentering och blanksteg hanteras. En tydlig och konsekvent kodstil 
+        gör det lättare för utvecklare att förstå och hantera koden. 
+</p>
+
+    <h4>Coverage</h4>
+    <p>Coverage eller kodtäckning handlar om hur mycket av koden som testas av automatiserade tester. Ju högre kodtäckning, desto fler delar av koden har testats. Det hjälper till att upptäcka och förhindra fel och buggar.
+        För hela applikationen får jag i scruntizer ett mätvärde på 17,6% för kodtäckningen vilket är ganska lågt. Låg kodtäckning kan medföra ökad risk för buggar och fel, svårigheter med att underhålla och 
+        ändra koden, minskat förtroende etc.  
+    </p>
+    <h4>Complexity</h4>
+    <p>Complexity mäter hur svår och krånglig koden är att förstå och arbeta med. Högre komplexitet innebär att koden är svårare att underhålla och ändra utan att introducera fel.
+        I mitt fall så har klassen App/Card/Deck enligt php metrics genomsnittlig cyclomatic complexity på 30 och en maximal 
+        method cyclomatic complexity på 14. Detta indikerar att klassen och dess metoder är ganska komplexa och kan vara svåra att förstå och underhålla.
+        Detta kan leda till ökad risk för fel och svårigheter att testa och debugga koden.
+    </p>
+    <h4>Cohesion</h4>
+    <p>Cohesion beskriver hur väl relaterade och fokuserade olika delar av koden är. En hög Cohesion innebär att koden är lättare att förstå och ändra eftersom den fokuserar på en sak i taget.
+        När det kommer till Cohesion och mätvärdet "Relative data complexity" i php metrics så har klassen App/Card/deck ett värde på 2.22 vilket är ganska högt. Detta indikerar 
+        att klassen har flera ansvarsområden och att dess metoder kanske inte är tillräckligt sammanhängande.
+    </p>
+    <h4>Coupling</h4>
+    <p>Coupling avser graden av beroende och interaktion mellan olika klasser och moduler i koden. Låg koppling innebär att klasser är löst kopplade och har begränsade beroenden på varandra.
+         Högre koppling kan göra koden mer komplex och svårare att testa och underhålla eftersom ändringar i en del av koden kan få oönskade konsekvenser i andra delar.
+        Om vi tittar på exempelvis klassen App/Controller/GameController som har flera metoder och referenser till andra klasser och komponenter inom applikationen. Detta kan göra det svårt 
+    att återanvända eller göra ändringar i koden utan att det påverkar andra delar i systemet negativt. Detta kan vi se enligt php metrics mätvärde Efferent Coupling som mäter antalet klasser som en given klass är beroende av.
+I fallet för klassen Gamecontroller är detta värde 6 relativt högt i jämförelse med andra klasser i applikationen.</p>
+    <h4>CRAP (Change Risk Anti-Patterns)</h4>
+    <p>CRAP är ett mått på hur riskabelt en del av koden är att ändra. Ju högre CRAP-värde, desto svårare är det att ändra koden utan att introducera fel. Det tar hänsyn till både kodens komplexitet och täckning av tester.
+        I mitt fall så har scrutinizer värderat metoden Controller\GameController::playGame() med CRAP-värdet 156 vilket indikerar att metoden är komplex och har ändrats flera gånger. 
+        Detta kan göra koden svår att förstå och underhålla och ökar risken för buggar när nya ändringar görs.
+    </p>
+
+    <h1>Php metrics</h1>
+    <p>Php metrics har gett mig en djupgående analys av koden genom olika mätvärden och metriker. Genom att analysera dess rapport för min kod har jag identifierat några flaskhalsar och svaga punkter som kan förbättras.
+         </p>
+         <h4>Hög Cyclomatic complexity</h4><p>
+         Genomsnittlig cyklomatisk komplexitet per klass har nu värdet 5.58 enligt php metrics rapporten. Vissa av mina klasser har en hög cyclomatic complexity, vilket indikerar att de kan vara svåra att förstå och underhålla. 
+         Att minska komplexiteten genom att bryta upp långa metoder kan förbättra kodens läsbarhet och underhållbarhet.
+         Detta relaterar till "Complexity" eftersom hög komplexitet ökar risken för fel och buggar samt försvårar för andra utvecklare att samarbeta och förstå koden. Genom att bryta upp långa metoder och minska antalet villkor kan vi minska komplexiteten och förbättra kodens läsbarhet och underhållbarhet.
+         </p>
+         <h4>Hög Relative structural complexity</h4><p>
+            GameController-klassen uppvisar hög komplexitets mått, ett mätvärde på relativ systemkomplexitet är 324.64, vilket tyder på potentiella förbättringsområden. 
+            Metoder inom denna klass är komplexa och kan gynnas av omstrukturering för att förbättra underhållbarheten och minska risken för buggar.
+            Detta relaterar till "Cohesion" och "Coupling" eftersom hög strukturell komplexitet kan leda till en brist på sammanhållning och en hög grad av beroenden mellan olika delar av koden. Genom att omstrukturera koden och minska beroenden kan vi förbättra kodens underhållbarhet och minska risken för buggar och fel.
+</p>
+<h4>Bugs</h4>
+<p>Klassen GameController har hög vikt för buggar (1.15), vilket indikerar att det finns buggar som kan påverka kodens tillförlitlighet och funktionalitet. För att förbättra hanteringen av buggar i denna klass kan jag 
+    överväga att identifera buggarna i koden och implementera fler enhetstester.  Buggar i koden kan indikera bristande "Coverage" och "Complexity", vilket kan påverka kodens tillförlitlighet och funktionalitet negativt.
+</p>
+<img class="phpmetrics" src="{{ asset('img/phpmetrics.png') }}" alt="">
+<p class="cursive">Bilden ovan visar php metrics rapport, detaljer ifrån Average cyclomatic complexity by class 5.58.
+</p>
+    <h1>Scrutinizer</h1>
+    <p>Scrutinizer har gett mig en djupgående analys av koden genom olika mätvärden. Genom att analysera dess rapport för min kod har jag identifierat några flaskhalsar och svaga punkter som kan förbättras.
+         </p>
+
+    <h4>Hög komplexitet</h4>
+    <p>Metoden GameController::playGame() visar på hög komplexitet enligt scrutinizer med CRAP-poäng: 156.
+    En möjlig förbättring kan vara att dela upp den i mindre, mer modulära delar för att minska komplexiteten och förbättra läsbarheten. 
+    Detta relaterar till "Complexity" eftersom hög komplexitet ökar risken för fel och buggar samt försvårar för andra utvecklare att samarbeta och förstå koden. Genom att dela upp koden i mindre moduler kan vi minska komplexiteten och förbättra kodens kvalitet.</p>
+
+    <h4>Låg kodtäckning</h4>
+    <p>För hela applikationen får jag i scruntizer ett mätvärde på 17,6% för kodtäckningen vilket är ganska lågt. Låg kodtäckning kan medföra ökad risk för buggar och fel, svårigheter med att underhålla och 
+        ändra koden, minskat förtroende etc. Ett sätt att öka kodtäckningen hade varit att skapa fler enhetstester för applikationen.
+        Låg kodtäckning relaterar till "Coverage" eftersom det handlar om hur väl våra testfall täcker koden. Genom att skriva fler och mer omfattande testfall kan vi förbättra kodtäckningen och därmed öka förtroendet för vår kod. 
+     </p>
+
+    <h4>Issues (23)</h4>
+    <p>Enligt Scrutinizer har jag 23 issues med min kod fördelat över 8 filer. Detta är något jag kunde ha granskat noggrannare och åtgärdat vid behov för att minska antalet problem.
+    Problemen med kodens kvalitet relaterar till "Cohesion" och "Coupling". Genom att förbättra kodens läsbarhet, enhetlighet och sammanhållning samt minska beroenden mellan olika delar av koden, kan vi minska antalet issues och förbättra kodens kvalitet och underhållbarhet.
+    </p>
+    <img class="phpmetrics" src="{{ asset('img/issues.png') }}" alt="">
+    <p class="cursive">Bilden ovan visar scrutinizer rapport, en översikt över 23 issues scrutinizer hittade med min kod.
+</p>
+    <a href="https://scrutinizer-ci.com/g/alicebrallis/mvc/"><img src="https://scrutinizer-ci.com/g/alicebrallis/mvc/badges/build.png" alt="Build Status"></a>
+<a href="https://scrutinizer-ci.com/g/alicebrallis/mvc/"><img src="https://scrutinizer-ci.com/g/alicebrallis/mvc/badges/coverage.png" alt="Coverage"></a>
+<a href="https://scrutinizer-ci.com/g/alicebrallis/mvc/"><img src="https://scrutinizer-ci.com/g/alicebrallis/mvc/badges/quality-score.png" alt="Quality Score"></a>
+
+    <h1>Förbättringar</h1>
+    <p><b>Fixa issues:</b> Genom att försöka lösa de 23 Issues scrutinizer identifierade, förväntar jag mig att minska antalet buggar och oanvänd kod i min kod. Detta kommer nog att förbättra mätvärden som "Bugs" och "Unused Code" enligt Scrutinizer, samt potentiellt öka kodtäckningen genom att ersätta felaktig kod med korrekt kod.
+
+<br><b>Öka kodtäckning:</b> Genom att skriva fler tester för olika delar av min kod, förväntar jag mig att öka kodtäckningen från 17,6%. Detta kommer troligen att förbättra mätvärden som "Coverage" och "Quality" enligt Scrutinizer, samt minska risken för buggar och fel.
+
+<br><b>Minska komplexiteten i class/metod:</b>  Genom att minska kodens komplexitet och förbättra dess kvalitetspoäng, samt följa kodens stilstandarder, förväntar jag mig att förbättra kodens övergripande kvalitet. Detta kan leda till förbättrade mätvärden för "Complexity", "Quality", och potentiellt "CRAP" enligt Scrutinizer.</p>
+
+    <h1>Diskussion</h1>
+    <p></p>
+</div>
+{% endblock %}

@@ -48,7 +48,6 @@ class CardGameControllerJSON extends AbstractController
         $deckUrl = $this->generateUrl('api_deck_get');
         $deckShuffle = $this->generateUrl('shuffle_api_deck');
         $deckDraw  = $this->generateUrl('draw_one_card');
-        $book  = $this->generateUrl('draw_one_card');
         $booksUrl = $this->generateUrl('api_library_books');
         $isbn = '978014143966';
 
@@ -67,7 +66,7 @@ class CardGameControllerJSON extends AbstractController
     }
 
     #[Route("/api/deck", name: "api_deck_get", methods: ["GET"])]
-    public function getSortedApiDeck(Request $request, SessionInterface $session): JsonResponse
+    public function getSortedApiDeck(SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck', null);
 
@@ -93,37 +92,38 @@ class CardGameControllerJSON extends AbstractController
     }
 
     #[Route("/api/deck/shuffle", name: "shuffle_api_deck", methods: ["POST", "GET"])]
-    public function shuffleApiDeck(Request $request, SessionInterface $session): JsonResponse
+    public function shuffleApiDeck(SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck', null);
-
-        if (!$deck instanceof Deck) {
+        if ($deck === null) {
             $deck = new Deck();
-        }
-
+        }        
+    
         if ($deck instanceof Deck) {
             $deck->shuffle();
             $session->set('deck', $deck);
-
+            
             $cards = $deck->getCards();
-
+    
             $cardsData = array_map(function ($card) {
                 return [
                     'color' => $card->getColor(),
                     'value' => $card->getValue(),
                 ];
             }, $cards);
-
+    
             $jsonResponse = new JsonResponse(['shuffled_deck' => $cardsData]);
             $jsonResponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
             return $jsonResponse;
         }
-
+    
+        return new JsonResponse(['error' => 'Failed to shuffle deck'], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
     }
+    
 
 
     #[Route("/api/deck/draw", name: "draw_one_card", methods: ["POST", "GET"])]
-    public function drawOneCard(Request $request, SessionInterface $session): JsonResponse
+    public function drawOneCard(SessionInterface $session): JsonResponse
     {
         $deck = $this->getOrCreateDeck($session);
 
@@ -131,7 +131,7 @@ class CardGameControllerJSON extends AbstractController
     }
 
     #[Route("/api/deck/draw/{number}", name: "draw_multiple_cards", methods: ["POST", "GET"])]
-    public function drawMultipleCards(Request $request, SessionInterface $session, int $number): JsonResponse
+    public function drawMultipleCards(SessionInterface $session, int $number): JsonResponse
     {
         $deck = $this->getOrCreateDeck($session);
 

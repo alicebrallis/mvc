@@ -66,7 +66,6 @@ class DeckTest extends TestCase
 
     public function testIfCardValueMatches(): void
     {
-        $deck = new Deck();
         $card = new Card("5", "Hjärter");
         $this->assertEquals("5", $card->getColor());
         $this->assertEquals("Hjärter", $card->getValue());
@@ -81,8 +80,6 @@ class DeckTest extends TestCase
         ];
 
         $deck = new Deck();
-        
-        $totalValue = $deck->calculateTotalValue($cards);
 
         $expectedTotalValue = 23;
         $actualTotalValue = 0;
@@ -274,7 +271,7 @@ class DeckTest extends TestCase
         $content = $response->getContent();
         $this->assertIsString($content, "Response content is not a string");
     
-        if ($content !== false) {
+        if ($content !== null) {
             $this->assertJson($content);
     
             $responseData = json_decode($content, true);

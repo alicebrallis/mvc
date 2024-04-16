@@ -181,3 +181,15 @@ form.showbooks button[type="submit"] {
     box-sizing: border-box;
 }
 
+.phpmetrics {
+    width: 140%;
+    height: 200%;
+}
+
+.report {
+    width: 120%;
+}
+
+.cursive {
+    font-style: italic;
+}
