@@ -127,20 +127,21 @@ class Deck extends Card
     }
 
     /**
-     * @param int $aceValue Beräknar ess-värdet totalvärde
-     * @return int Värdet av ess-kortet.
+     * @param Card $card Kortet vars värde ska beräknas.
+     * @param int $aceValue Värdet för ess-kortet.
+     * @return string Värdet av kortet.
      */
-    public function getValue(): ?int
+    public function getValue(Card $card, int $aceValue): string
     {
         $value = $card->getValue();
-    
+        
         if ($value === 'Ess') {
-            return $aceValue;
+            return (string) $aceValue;
         } else {
-            return 0;
+            return '0';
         }
     }
-    
+
 
     /**
      * Visar totalpoängen för spelaren.

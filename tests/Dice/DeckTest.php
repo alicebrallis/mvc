@@ -79,8 +79,6 @@ class DeckTest extends TestCase
             new Card("Spader", "10"),
         ];
 
-        $deck = new Deck();
-
         $expectedTotalValue = 23;
         $actualTotalValue = 0;
         foreach ($cards as $card) {
@@ -271,7 +269,7 @@ class DeckTest extends TestCase
         $content = $response->getContent();
         $this->assertIsString($content, "Response content is not a string");
     
-        if ($content !== null) {
+        if ($content !== '') {
             $this->assertJson($content);
     
             $responseData = json_decode($content, true);
