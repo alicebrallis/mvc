@@ -335,7 +335,7 @@ public function testDrawMoreCardsThanAvailable(): void
     {
         $game = new Deck();
         $aceValue = 11;
-        $result = $game->testCalculateAceValue($aceValue);
+        $result = $game->calculateAceValue($aceValue);
 
         $this->assertEquals($aceValue, $result);
     }

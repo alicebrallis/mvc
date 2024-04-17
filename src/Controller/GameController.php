@@ -110,6 +110,8 @@ class GameController extends AbstractController
         $cardRound = $session->get("cardRound", 0) + 1;
         $session->set("cardRound", $cardRound);
 
+        $totalValue = $deck->calculateTotalValue($drawnCards);
+
 
         $totalCards = $session->get("totalValue", 0) + $totalValue;
 
