@@ -196,26 +196,17 @@ class Deck extends Card
     {
         $totalValuePlayer = $resultPlayer['totalValue'];
         $totalValueBank = $resultBank['totalValueBank'];
-
-        switch (true) {
-            case ($totalValuePlayer === $totalValueBank):
-                return "Ingen vinnare denna gång";
-            case ($totalValuePlayer === 21 && $totalValueBank < 21):
-                return "Du (Spelaren) är vinnaren för denna omgången";
-            case ($totalValueBank === 21 && $totalValuePlayer < 21):
-                return "Bankiren är vinnaren för denna omgången";
-            case ($totalValuePlayer > 21 && $totalValueBank < 21):
-                return "Bankiren är vinnaren för denna omgången";
-            case ($totalValueBank > 21 && $totalValuePlayer < 21):
-                return "Du (Spelaren) är vinnaren för denna omgången";
-            case ($totalValuePlayer > $totalValueBank && $totalValuePlayer < 21):
-                return "Du (Spelaren) är vinnaren för denna omgången";
-            case ($totalValueBank > $totalValuePlayer && $totalValueBank < 21):
-                return "Bankiren är vinnaren för denna omgången";
-            default:
-                return "Ingen vinnare denna gång";
-        }
+    
+        $results = [
+            21 => "Du (Spelaren) är vinnaren för denna omgången",
+            -21 => "Bankiren är vinnaren för denna omgången",
+            0 => "Ingen vinnare denna gång"
+        ];
+    
+        $difference = $totalValuePlayer - $totalValueBank;
+        return $results[$difference] ?? "Ingen vinnare denna gång";
     }
+    
 
 
     /**
