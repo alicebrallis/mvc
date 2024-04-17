@@ -61,7 +61,7 @@ class GameController extends AbstractController
     }
     #[Route("/game/play", name: "game_play", methods: ['GET', 'POST'])]
     public function playGame(
-        Request $request,
+        //Request $request,
         SessionInterface $session
     ): Response {
         $deck = new Deck();
@@ -83,7 +83,7 @@ class GameController extends AbstractController
                 } else {
                     //$selectedAceValue = $request->request->get('selectedAceValue', 14);
                     $drawnCards[count($drawnCards) - 1] = $deck->getOneCard();
-                    $totalValue = $deck->calculateAceValue($integerSessionValue);
+                    //$totalValue = $deck->calculateAceValue($integerSessionValue);
                 }
             } else {
                 $drawnCards[count($drawnCards) - 1] = $deck->getOneCard();

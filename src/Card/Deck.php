@@ -123,18 +123,17 @@ class Deck extends Card
         }
     }
 
-    /**
-     * @param int $aceValue Beräknar ess-värdet totalvärde
-     * @return int Värdet av ess-kortet.
-     */
-    public function calculateAceValue(int $aceValue): int
+    public function getValue(Card $card, int $aceValue): ?int
     {
-        $value = 'Ess';
-
+        $value = $card->getValue();
+        
         if ($value === 'Ess') {
             return $aceValue;
+        } else {
+            return null; // Lägg till en returutsaga för fallet när villkoret är falskt
         }
     }
+    
 
     /**
      * Visar totalpoängen för spelaren.
