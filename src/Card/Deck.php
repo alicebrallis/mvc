@@ -197,14 +197,19 @@ class Deck extends Card
         $totalValuePlayer = $resultPlayer['totalValue'];
         $totalValueBank = $resultBank['totalValueBank'];
     
-        $results = [
-            21 => "Du (Spelaren) är vinnaren för denna omgången",
-            -21 => "Bankiren är vinnaren för denna omgången",
-            0 => "Ingen vinnare denna gång"
-        ];
+        if ($totalValuePlayer === $totalValueBank) {
+            return "Ingen vinnare denna gång";
+        }
     
-        $difference = $totalValuePlayer - $totalValueBank;
-        return $results[$difference] ?? "Ingen vinnare denna gång";
+        if ($totalValuePlayer === 21 || $totalValueBank > 21 || ($totalValuePlayer < 21 && $totalValueBank < $totalValuePlayer)) {
+            return "Du (Spelaren) är vinnaren för denna omgången";
+        }
+    
+        if ($totalValueBank === 21 || $totalValuePlayer > 21 || ($totalValueBank < 21 && $totalValuePlayer < $totalValueBank)) {
+            return "Bankiren är vinnaren för denna omgången";
+        }
+    
+        return "Ingen vinnare denna gång";
     }
     
 
