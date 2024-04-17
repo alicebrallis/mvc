@@ -196,23 +196,22 @@ class Deck extends Card
     {
         $totalValuePlayer = $resultPlayer['totalValue'];
         $totalValueBank = $resultBank['totalValueBank'];
-    
+
         if ($totalValuePlayer === $totalValueBank) {
             return "Ingen vinnare denna gång";
         }
-    
-        if ($totalValuePlayer === 21 || $totalValueBank > 21 || ($totalValuePlayer < 21 && $totalValueBank < $totalValuePlayer)) {
+
+        if ($totalValuePlayer === 21 && $totalValueBank < 21 || $totalValueBank > 21 && $totalValuePlayer < 21 || $totalValuePlayer > $totalValueBank && $totalValuePlayer < 21) {
             return "Du (Spelaren) är vinnaren för denna omgången";
         }
-    
-        if ($totalValueBank === 21 || $totalValuePlayer > 21 || ($totalValueBank < 21 && $totalValuePlayer < $totalValueBank)) {
+
+        if ($totalValueBank === 21 && $totalValuePlayer < 21 || $totalValuePlayer > 21 && $totalValueBank < 21 || $totalValueBank > $totalValuePlayer && $totalValueBank < 2) {
             return "Bankiren är vinnaren för denna omgången";
         }
-    
-        return "Ingen vinnare denna gång";
-    }
-    
 
+        return "Ingen vinnare denna gång";
+
+    }
 
     /**
      * Returnerar antalet kvarvarande kort i leken.
