@@ -19,8 +19,14 @@ class DiceGraphic extends Dice
         parent::__construct();
     }
 
+
     public function getAsString(): string
     {
-        return $this->representation[$this->value - 1];
+        if ($this->value >= 1 && $this->value <= 6) {
+            return $this->representation[$this->value - 1];
+        } else {
+            return '';
+        }
     }
+
 }
