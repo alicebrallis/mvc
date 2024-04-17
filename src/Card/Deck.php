@@ -110,9 +110,6 @@ class Deck extends Card
     public function calculateCardValue(Card $card): int
     {
 
-        //$one = 1;
-        //$fourteen = 14;
-
         $value = $card->getValue();
 
         if ($value === 'Knekt') {
@@ -127,23 +124,17 @@ class Deck extends Card
     }
 
     /**
-     * @param Card $card Kortet vars värde ska beräknas.
-     * @param int $aceValue Värdet för ess-kortet.
-     * @return string Värdet av kortet som en sträng.
+     * @param int $aceValue Beräknar ess-värdet totalvärde
+     * @return int Värdet av ess-kortet.
      */
-    public function getValue(Card $card, int $aceValue): string
+    public function calculateAceValue(int $aceValue): int
     {
-        $value = $card->getValue();
-        
+        $value = 'Ess';
+
         if ($value === 'Ess') {
-            return (string) $aceValue;
-        } else {
-            return '0';
+            return $aceValue;
         }
     }
-
-
-
 
     /**
      * Visar totalpoängen för spelaren.

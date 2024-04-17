@@ -79,9 +79,9 @@ class GameController extends AbstractController
 
                 if ($integerSessionValue === 1) {
                     $drawnCards[count($drawnCards) - 1] = $deck->getOneCard();
-                    $totalValue = $deck->calculateAceValues($integerSessionValue, $drawnCards);
+                    //$totalValue = $deck->calculateAceValues($integerSessionValue, $drawnCards);
                 } else {
-                    $selectedAceValue = $request->request->get('selectedAceValue', 14);
+                    //$selectedAceValue = $request->request->get('selectedAceValue', 14);
                     $drawnCards[count($drawnCards) - 1] = $deck->getOneCard();
                     $totalValue = $deck->calculateAceValue($integerSessionValue);
                 }
@@ -111,7 +111,7 @@ class GameController extends AbstractController
         $session->set("cardRound", $cardRound);
 
 
-        //$totalCards = $session->get("totalValue", 0) + $totalValue;
+        $totalCards = $session->get("totalValue", 0) + $totalValue;
 
 
 
@@ -211,7 +211,7 @@ class GameController extends AbstractController
         $drawnCard = $request->request->get('drawn_cards');
         $session->set('drawnCard', $drawnCard);
 
-        $totalValue = $session->get("totalValue");
+        //$totalValue = $session->get("totalValue");
 
         return $this->redirectToRoute('game_play');
     }
