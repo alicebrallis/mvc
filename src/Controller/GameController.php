@@ -92,7 +92,7 @@ class GameController extends AbstractController
         } else {
             if (is_array($drawnCards)) {
                 $drawnCards[] = $deck->getOneCard();
-                $totalValue = $deck->calculateTotalValue($drawnCards);
+                //$totalValue = $deck->calculateTotalValue($drawnCards);
             }
         }
         $session->set("drawn_cards", $drawnCards);
