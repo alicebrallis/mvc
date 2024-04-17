@@ -29,4 +29,18 @@ class DiceGraphicTest extends TestCase
             $this->assertContains($result, $validRepresentations);
         }
     }
+
+    public function testGetAsStringReturnsEmptyStringWhenValueIsOutOfRange()
+    {
+        $dice = new DiceGraphic();
+
+        $reflection = new \ReflectionClass($dice);
+        $property = $reflection->getProperty('value');
+        $property->setAccessible(true);
+        $property->setValue($dice, 7);
+
+        $result = $dice->getAsString();
+        $this->assertSame('', $result);
+    }
 }
+
