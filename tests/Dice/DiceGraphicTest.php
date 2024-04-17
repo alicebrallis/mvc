@@ -12,18 +12,21 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 /**
  * Test cases för klassen DiceGraphicTest.
  */
+class DiceGraphicTest extends TestCase
+{
+    public function testGetAsStringReturnsCorrectRepresentation()
+    {
+        $dice = new DiceGraphic();
 
- class DiceGraphicTest extends TestCase
- {
-     public function testGetAsStringReturnsCorrectRepresentation()
-     {
-         $dice = new DiceGraphic();
-         $result = $dice->getAsString();
- 
-         $validRepresentations = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
- 
-         $validRepresentations[] = '';
-         $this->assertContains($result, $validRepresentations);
-     }
- }
- 
+        for ($value = 1; $value <= 6; $value++) {
+            $reflection = new \ReflectionClass($dice);
+            $property = $reflection->getProperty('value');
+            $property->setAccessible(true);
+            $property->setValue($dice, $value);
+
+            $result = $dice->getAsString();
+            $validRepresentations = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+            $this->assertContains($result, $validRepresentations);
+        }
+    }
+}
