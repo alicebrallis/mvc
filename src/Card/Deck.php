@@ -196,38 +196,27 @@ class Deck extends Card
     {
         $totalValuePlayer = $resultPlayer['totalValue'];
         $totalValueBank = $resultBank['totalValueBank'];
-    
-        if ($totalValuePlayer === $totalValueBank) {
-            return "Ingen vinnare denna gång";
+
+        switch (true) {
+            case ($totalValuePlayer === $totalValueBank):
+                return "Ingen vinnare denna gång";
+            case ($totalValuePlayer === 21 && $totalValueBank < 21):
+                return "Du (Spelaren) är vinnaren för denna omgången";
+            case ($totalValueBank === 21 && $totalValuePlayer < 21):
+                return "Bankiren är vinnaren för denna omgången";
+            case ($totalValuePlayer > 21 && $totalValueBank < 21):
+                return "Bankiren är vinnaren för denna omgången";
+            case ($totalValueBank > 21 && $totalValuePlayer < 21):
+                return "Du (Spelaren) är vinnaren för denna omgången";
+            case ($totalValuePlayer > $totalValueBank && $totalValuePlayer < 21):
+                return "Du (Spelaren) är vinnaren för denna omgången";
+            case ($totalValueBank > $totalValuePlayer && $totalValueBank < 21):
+                return "Bankiren är vinnaren för denna omgången";
+            default:
+                return "Ingen vinnare denna gång";
         }
-    
-        if ($totalValuePlayer === 21 && $totalValueBank < 21) {
-            return "Du (Spelaren) är vinnaren för denna omgången";
-        }
-    
-        if ($totalValueBank === 21 && $totalValuePlayer < 21) {
-            return "Bankiren är vinnaren för denna omgången";
-        }
-    
-        if ($totalValuePlayer > 21 && $totalValueBank < 21) {
-            return "Bankiren är vinnaren för denna omgången";
-        }
-    
-        if ($totalValueBank > 21 && $totalValuePlayer < 21) {
-            return "Du (Spelaren) är vinnaren för denna omgången";
-        }
-    
-        if ($totalValuePlayer > $totalValueBank && $totalValuePlayer < 21) {
-            return "Du (Spelaren) är vinnaren för denna omgången";
-        }
-    
-        if ($totalValueBank > $totalValuePlayer && $totalValueBank < 21) {
-            return "Bankiren är vinnaren för denna omgången";
-        }
-    
-        return "Ingen vinnare denna gång";
     }
-    
+
 
     /**
      * Returnerar antalet kvarvarande kort i leken.
