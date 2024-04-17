@@ -83,7 +83,7 @@ class GameController extends AbstractController
                 } else {
                     $selectedAceValue = $request->request->get('selectedAceValue', 14);
                     $drawnCards[count($drawnCards) - 1] = $deck->getOneCard();
-                    $totalValue = $deck->calculateAceValue($integerSessionValue);
+                    $totalValue = $deck->calculateAceValues($integerSessionValue);
                 }
             } else {
                 $drawnCards[count($drawnCards) - 1] = $deck->getOneCard();

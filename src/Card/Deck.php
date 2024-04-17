@@ -129,18 +129,19 @@ class Deck extends Card
     /**
      * @param Card $card Kortet vars värde ska beräknas.
      * @param int $aceValue Värdet för ess-kortet.
-     * @return string Värdet av kortet.
+     * @return string Värdet av kortet som en sträng.
      */
-    public function getValue(Card $card, int $aceValue): string
+    public function getValue(Card $card, string $aceValue): string
     {
         $value = $card->getValue();
         
         if ($value === 'Ess') {
-            return (string) $aceValue;
+            return $aceValue;
         } else {
             return '0';
         }
     }
+
 
 
     /**
