@@ -66,9 +66,7 @@ class GameController extends AbstractController
     ): Response {
         $deck = new Deck();
         //$selectedAceValue = $session->get('selectedAceValue', 14);
-
         //$drawnCard = $session->get('drawnCard');
-
         $drawnCards = $session->get("drawn_cards", []);
 
         if (!empty($drawnCards) && is_array($drawnCards)) {
@@ -85,9 +83,6 @@ class GameController extends AbstractController
                     $drawnCards[count($drawnCards) - 1] = $deck->getOneCard();
                     //$totalValue = $deck->calculateAceValue($integerSessionValue);
                 }
-            } else {
-                $drawnCards[count($drawnCards) - 1] = $deck->getOneCard();
-                //$totalValue = $deck->calculateTotalValue($drawnCards);
             }
         } else {
             if (is_array($drawnCards)) {
@@ -104,27 +99,17 @@ class GameController extends AbstractController
             $cardData['value'] = $drawnCards[0]->getValue();
         }
 
-
         $session->set("cardData", $cardData);
-
         $cardRound = $session->get("cardRound", 0) + 1;
         $session->set("cardRound", $cardRound);
-
         $totalValue = $deck->calculateTotalValue($drawnCards);
-
-
         $totalCards = $session->get("totalValue", 0) + $totalValue;
-
-
-
         $gameOver = "";
         if ($totalCards > 21) {
             $gameOver = "Över 21 poäng, du har blivit tjock och förlorade denna omgång";
             $deck->gameOverPlayer();
         }
-
         $session->set("totalValue", $totalCards);
-
         $session->set("resultPlayer", [
             'cardData' => $cardData,
             'gameOver' => $gameOver,
@@ -148,7 +133,6 @@ class GameController extends AbstractController
     public function playBankGame(
         SessionInterface $session
     ): Response {
-
 
         $deck = new Deck();
 
