@@ -69,7 +69,7 @@ class GameController extends AbstractController
             $drawnCards[] = $deck->getOneCard();
             $session->set("drawn_cards", $drawnCards);
         } elseif ($drawnCards[0]->getValue() === 'Ess') {
-            $sessionAceValue = intval(filter_var($session->get('selectedAceValue', 14), FILTER_SANITIZE_NUMBER_INT));
+            //$sessionAceValue = intval(filter_var($session->get('selectedAceValue', 14), FILTER_SANITIZE_NUMBER_INT));
             $drawnCards[count($drawnCards) - 1] = $deck->getOneCard();
             $session->set("drawn_cards", $drawnCards);
         }
