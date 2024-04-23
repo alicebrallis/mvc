@@ -15,7 +15,7 @@
             </div>
             
             {% if previousColor is not null and (previousColor != card.getColor() or previousValue != card.getValue()) %}
-                <br> {# Lägg till radbryt om färgen eller värdet ändras #}
+templates/card_game/test/no_cards_left.html.twig                <br> {# Lägg till radbryt om färgen eller värdet ändras #}
             {% endif %}
 
             {% set previousColor = card.getColor() %}

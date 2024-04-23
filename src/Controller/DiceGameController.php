@@ -119,14 +119,16 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/roll", name: "pig_roll", methods: ['POST'])]
-    public function roll(): Response {
+    public function roll(): Response
+    {
         return $this->redirectToRoute('pig_play');
     }
-    
+
 
     #[Route("/game/pig/save", name: "pig_save", methods: ['POST'])]
-    public function save(): Response {
+    public function save(): Response
+    {
         return $this->redirectToRoute('pig_play');
-    }    
+    }
 
 }

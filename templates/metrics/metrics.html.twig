@@ -7,7 +7,7 @@
 
 <div class="report">
     <h1>Introduktion</h1>
-    <p>I denna introduktion tänker jag sammanfatta kort om de sex "C" som påverkar kodens kvalité.  Utöver detta kommer jag att exemplifiera med några mätvärden som är kopplad till egen kod och relatera det till kodkvalité. </p>
+    <p>I denna introduktion tänker jag sammanfatta kort om de sex "C" som påverkar kodens kvalité.  Utöver detta kommer jag att exemplifiera med några mätvärden som är kopplad till egen kod och sedan relatera det till kodkvalité. </p>
     <h4>Codestyle</h4>
     <p>Codestyle handlar om hur koden är skriven och formaterad. Det inkluderar saker som hur variabler namnges, 
         hur kommentarer används, hur indentering och blanksteg hanteras. En tydlig och konsekvent kodstil 
@@ -32,7 +32,7 @@
     </p>
     <h4>Coupling</h4>
     <p>Coupling avser graden av beroende och interaktion mellan olika klasser och moduler i koden. Låg koppling innebär att klasser är löst kopplade och har begränsade beroenden på varandra.
-         Högre koppling kan göra koden mer komplex och svårare att testa och underhålla eftersom ändringar i en del av koden kan få oönskade konsekvenser i andra delar.
+         Högre koppling kan göra koden mer komplex och svårare att testa och underhålla eftersom ändringar i en del av koden kan få oönskade effekter i andra delar.
         Om vi tittar på exempelvis klassen App/Controller/GameController som har flera metoder och referenser till andra klasser och komponenter inom applikationen. Detta kan göra det svårt 
     att återanvända eller göra ändringar i koden utan att det påverkar andra delar i systemet negativt. Detta kan vi se enligt php metrics mätvärde Efferent Coupling som mäter antalet klasser som en given klass är beroende av.
 I fallet för klassen Gamecontroller är detta värde 6 relativt högt i jämförelse med andra klasser i applikationen.</p>
@@ -43,12 +43,12 @@ I fallet för klassen Gamecontroller är detta värde 6 relativt högt i jämfö
     </p>
 
     <h1>Php metrics</h1>
-    <p>Php metrics har gett mig en djupgående analys av koden genom olika mätvärden och metriker. Genom att analysera dess rapport för min kod har jag identifierat några flaskhalsar och svaga punkter som kan förbättras.
+    <p>Php metrics har gett mig en rapport med en analys av koden genom olika mätvärden och metriker. Genom att analysera dess rapport för min kod har jag identifierat några flaskhalsar och svaga punkter som kan förbättras.
          </p>
          <h4>Hög Cyclomatic complexity</h4><p>
          Genomsnittlig cyklomatisk komplexitet per klass har nu värdet 5.58 enligt php metrics rapporten. Vissa av mina klasser har en hög cyclomatic complexity, vilket indikerar att de kan vara svåra att förstå och underhålla. 
          Att minska komplexiteten genom att bryta upp långa metoder kan förbättra kodens läsbarhet och underhållbarhet.
-         Detta relaterar till "Complexity" eftersom hög komplexitet ökar risken för fel och buggar samt försvårar för andra utvecklare att samarbeta och förstå koden. Genom att bryta upp långa metoder och minska antalet villkor kan vi minska komplexiteten och förbättra kodens läsbarhet och underhållbarhet.
+         Detta relaterar till "Complexity" eftersom hög komplexitet ökar risken för fel och buggar samt försvårar för andra utvecklare att samarbeta och förstå koden. Genom att bryta upp långa metoder och minska antalet villkor kan man minska komplexiteten och förbättra kodens läsbarhet och underhållbarhet.
          </p>
          <h4>Hög Relative structural complexity</h4><p>
             GameController-klassen uppvisar hög komplexitets mått, ett mätvärde på relativ systemkomplexitet är 324.64, vilket tyder på potentiella förbättringsområden. 
@@ -63,7 +63,7 @@ I fallet för klassen Gamecontroller är detta värde 6 relativt högt i jämfö
 <p class="cursive">Bilden ovan visar php metrics rapport, detaljer ifrån Average cyclomatic complexity by class 5.58.
 </p>
     <h1>Scrutinizer</h1>
-    <p>Scrutinizer har gett mig en djupgående analys av koden genom olika mätvärden. Genom att analysera dess rapport för min kod har jag identifierat några flaskhalsar och svaga punkter som kan förbättras.
+    <p>Scrutinizer har gett mig en rapport med en analys av koden genom olika mätvärden. Genom att analysera dess rapport för min kod har jag identifierat några flaskhalsar och svaga punkter som kan förbättras.
          </p>
 
     <h4>Hög komplexitet</h4>
@@ -94,8 +94,34 @@ I fallet för klassen Gamecontroller är detta värde 6 relativt högt i jämfö
 <br><b>Öka kodtäckning:</b> Genom att skriva fler tester för olika delar av min kod, förväntar jag mig att öka kodtäckningen från 17,6%. Detta kommer troligen att förbättra mätvärden som "Coverage" och "Quality" enligt Scrutinizer, samt minska risken för buggar och fel.
 
 <br><b>Minska komplexiteten i class/metod:</b>  Genom att minska kodens komplexitet och förbättra dess kvalitetspoäng, samt följa kodens stilstandarder, förväntar jag mig att förbättra kodens övergripande kvalitet. Detta kan leda till förbättrade mätvärden för "Complexity", "Quality", och potentiellt "CRAP" enligt Scrutinizer.</p>
+<b><p>Rapporter från php metrics och scrutinizer efter jag implementerat förbättringarna:</p></b>
+<p class="italic">Scrutinizer</p>
+<img class="phpmetrics" src="{{ asset('img/newissue.png') }}" alt="">
+<p>Jag har minskat antalet issues från 23 till 1. Detta är en klar förbättring från det initiala stadiet med koden. Det gör att koden känns mer trovärdig än tidigare.
+    Jag har rensat i koden och tagit bort kod som känts överflödig och kod som inte har använts. Detta gör att koden nu känns mer "clean" än tidigare. Detta har resulterat i en mer robust och påtlitlig kodbas.
+</p>
+<img class="phpmetrics" src="{{ asset('img/issuess.png') }}" alt="">
+<p>Jag har ökat kodtäckningen något, från det initiala 17.6% till nu 19.7%. Dock hade jag velat öka den ytterliggare men det har jag inte lyckats med då kodtäckningen som saknas gäller mina 
+    klasser för Controllers och det förstod jag inte hur jag skulle göra. Även om ökningen från 17.6% till 19.7% i kodtäckning är liten, är förbättring i kodtäckning positiv.  </p>
+<p class="italic">Php metrics och scrutinizer</p>
+<img class="phpmetrics" src="{{ asset('img/phpmetricss.png') }}" alt="">
+<img class="phpmetrics" src="{{ asset('img/complexity.png') }}" alt="">
+<img class="phpmetrics" src="{{ asset('img/ow.png') }}" alt="">
+<img class="phpmetrics" src="{{ asset('img/cs.png') }}" alt="">
+<p>Den generella komplexiteten för min kod har reducerats från 5.58 till nu 5.15. GameController-klassen har visat tidigare på  hög komplexitet, ett mätvärde då på relativ systemkomplexitet var 324.64 och som nu är 256.71. 
+    Genom att minska komplexiteten så har jag minskat risken för buggar.
+     Jag har förbättrat CRAP-poängen för metoden  GameController::playGame() som visat på hög komplexitet enligt scrutinizer med CRAP-poäng: 156 och som nu är 90 i CRAP-poäng. Detta i sig har minskat kodens komplexitet och ökat dess läsbarhet och underhållbarhet. 
+    Detta kan göra koden enklare att testa och felsöka samt minska risken för framtida problem.</p>
 
     <h1>Diskussion</h1>
-    <p></p>
+    <p>Genom att använda verktyg som PHP Metrics och Scrutinizer, samt att granska och förbättra koden regelbundet, kan man aktivt arbeta med att göra koden bättre och mer lättläst.
+
+Fördelarna med detta tillvägagångssätt är att det hjälper utvecklare att få feedback om vad som kan förbättras i koden och att de kan fokusera på de områden som behöver mest uppmärksamhet. Detta leder till att koden blir enklare att förstå och underhålla.
+
+Nackdelarna är att det kan ta lite tid och energi att integrera dessa verktyg och att tolka den feedback de ger. Det kan också vara svårt att hålla jämna steg med alla förändringar som behöver göras i koden.
+
+Andra sätt att göra koden bättre inkluderar att följa etablerade riktlinjer för kodning och att regelbundet granska och diskutera koden med andra i teamet.
+
+Sammanfattningsvis är det viktigt att aktivt arbeta med kodkvalitet för att skapa och underhålla bra mjukvara över tid. Genom att använda verktyg och följa bästa praxis kan utvecklare göra sin kod mer robust och lättläst.</p>
 </div>
 {% endblock %}

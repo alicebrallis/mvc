@@ -1,20 +1,16 @@
 <?php
 
-
 namespace Tests\Unit\Dice;
-use App\Dice\Dice;
-use App\Dice\DiceHand;
+
 use App\Dice\DiceGraphic;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Test cases för klassen DiceGraphicTest.
  */
 class DiceGraphicTest extends TestCase
 {
-    public function testGetAsStringReturnsCorrectRepresentation()
+    public function testGetAsStringReturnsCorrectRepresentation(): void
     {
         $dice = new DiceGraphic();
 
@@ -30,7 +26,7 @@ class DiceGraphicTest extends TestCase
         }
     }
 
-    public function testGetAsStringReturnsEmptyStringWhenValueIsOutOfRange()
+    public function testGetAsStringReturnsEmptyStringWhenValueIsOutOfRange(): void
     {
         $dice = new DiceGraphic();
 
@@ -43,4 +39,3 @@ class DiceGraphicTest extends TestCase
         $this->assertSame('', $result);
     }
 }
-

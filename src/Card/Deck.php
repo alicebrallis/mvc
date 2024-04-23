@@ -132,7 +132,7 @@ class Deck extends Card
         //$value = 'Ess';
 
         return $aceValue;
-        
+
     }
 
     /**
@@ -196,14 +196,14 @@ class Deck extends Card
     {
         $totalValuePlayer = $resultPlayer['totalValue'];
         $totalValueBank = $resultBank['totalValueBank'];
-    
+
         if ($totalValuePlayer === $totalValueBank) {
             return "Ingen vinnare denna gång";
         }
-    
+
         $playerWins = ($totalValuePlayer === 21 && $totalValueBank < 21) || ($totalValuePlayer < 21 && ($totalValuePlayer > $totalValueBank || $totalValueBank > 21));
         $bankWins = ($totalValueBank === 21 && $totalValuePlayer < 21) || ($totalValueBank < 21 && ($totalValueBank > $totalValuePlayer || $totalValuePlayer > 21));
-    
+
         return $playerWins ? "Du (Spelaren) är vinnaren för denna omgången" :
                ($bankWins ? "Bankiren är vinnaren för denna omgången" :
                "Ingen vinnare denna gång");

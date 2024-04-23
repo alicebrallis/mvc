@@ -57,31 +57,28 @@ class CardGameController extends AbstractController
         ]);
     }
 
-
     #[Route("/card/deck/draw", name: "draw_cards")]
     public function drawCards(Request $request): Response
     {
         $session = $request->getSession();
-        $deck = $session->get('deck', null);
-        $drawnCards = $session->get('drawn_cards', []);
+        $deck = $session->get('deck');
 
-        if ($deck === null || !$deck instanceof Deck) {
+        // Kontrollera om $deck är null eller inte en array innan du använder den
+        if ($deck === null || !is_array($deck)) {
+            // Skapa en ny lek om $deck är null eller inte en array
             $deck = new Deck();
             $deck->shuffle();
             $session->set('deck', $deck);
         }
 
-        if ($deck instanceof Deck && count($deck->getCards()) > 0) {
-            $card = $deck->getOneCard();
-            $cards = $deck->getCards();
 
-            $key = array_search($card, $cards);
-            if ($key !== false) {
-                unset($cards[$key]);
-            }
+        $drawnCards = $session->get('drawn_cards', []);
 
-            $number_of_cards = count($cards);
-            $deck->setCards($cards);
+        // Kontrollera om $deck är en array och att den har minst ett kort innan du fortsätter
+        if (is_array($deck) && count($deck) > 0) {
+            $card = $deck[0];
+            // Ta bort det första kortet från $deck
+            array_shift($deck);
             $session->set('deck', $deck);
 
             /** @var Card[] $drawnCards */
@@ -91,7 +88,7 @@ class CardGameController extends AbstractController
 
             return $this->render('card_game/test/draw_cards.html.twig', [
                 'drawnCard' => $card,
-                'numCards' => $number_of_cards
+                'numCards' => count($deck) // Antalet kvarvarande kort i $deck
             ]);
         }
 

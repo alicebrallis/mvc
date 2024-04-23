@@ -14,8 +14,8 @@ use function Symfony\Component\String\u;
 
 class MetricsController extends AbstractController
 {
-    #[Route('/metrics',  name: "metrics")]
-    public function metricsView()
+    #[Route('/metrics', name: "metrics")]
+    public function metricsView(): Response
     {
         return $this->render('metrics/metrics.html.twig');
     }

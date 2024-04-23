@@ -64,45 +64,44 @@ class GameController extends AbstractController
     {
         $deck = new Deck();
         $drawnCards = $session->get("drawn_cards", []);
-    
+
         if (empty($drawnCards) || !is_array($drawnCards)) {
+            $drawnCards = [$deck->getOneCard()];
+            $session->set("drawn_cards", $drawnCards);
+        } elseif (!empty($drawnCards[0]) && $drawnCards[0]->getValue() === 'Ess') {
             $drawnCards[] = $deck->getOneCard();
             $session->set("drawn_cards", $drawnCards);
-        } elseif ($drawnCards[0]->getValue() === 'Ess') {
-            //$sessionAceValue = intval(filter_var($session->get('selectedAceValue', 14), FILTER_SANITIZE_NUMBER_INT));
-            $drawnCards[count($drawnCards) - 1] = $deck->getOneCard();
-            $session->set("drawn_cards", $drawnCards);
         }
-    
+
         $cardData = [];
-        if (count($drawnCards) > 0 && is_object($drawnCards[0]) && method_exists($drawnCards[0], 'getColor') && method_exists($drawnCards[0], 'getValue')) {
+        if (is_object($drawnCards[0]) && method_exists($drawnCards[0], 'getColor') && method_exists($drawnCards[0], 'getValue')) {
             $cardData['color'] = $drawnCards[0]->getColor();
             $cardData['value'] = $drawnCards[0]->getValue();
         }
-    
+
         $session->set("cardData", $cardData);
-    
+
         $cardRound = $session->get("cardRound", 0) + 1;
         $session->set("cardRound", $cardRound);
-    
+
         $totalValue = $deck->calculateTotalValue($drawnCards);
         $totalCards = $session->get("totalValue", 0) + $totalValue;
-    
+
         if ($totalCards > 21) {
             $gameOver = "Över 21 poäng, du har blivit tjock och förlorade denna omgång";
             $deck->gameOverPlayer();
         } else {
             $gameOver = "";
         }
-    
+
         $session->set("totalValue", $totalCards);
-    
+
         $session->set("resultPlayer", [
             'cardData' => $cardData,
             'gameOver' => $gameOver,
             'totalValue' => $totalCards,
         ]);
-    
+
         $data = [
             "drawUrl" => $this->generateUrl('draw_card'),
             "saveUrl" => $this->generateUrl('game_save'),
@@ -113,10 +112,10 @@ class GameController extends AbstractController
             "cardRound" => $cardRound,
             "totalValue" => $totalCards,
         ];
-    
+
         return $this->render('game/play.html.twig', $data);
     }
-    
+
 
     #[Route("/game/bank_play", name: "bank_play", methods: ['GET'])]
     public function playBankGame(
@@ -214,20 +213,13 @@ class GameController extends AbstractController
         return $this->redirectToRoute('bank_play');
     }
 
-
-
-
     #[Route("/game/save", name: "game_save", methods: ['POST'])]
     public function saveGame(
         SessionInterface $session
     ): Response {
         $totalValue = $session->get("totalValue", 0);
         $session->set("savedTotalValue", $totalValue);
-
-
         $session->set("drawn_cards", []);
-
-
         $session->set("totalValue", 0);
 
         return $this->redirectToRoute('bank_play');

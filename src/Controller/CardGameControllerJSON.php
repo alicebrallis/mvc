@@ -97,29 +97,29 @@ class CardGameControllerJSON extends AbstractController
         $deck = $session->get('deck', null);
         if ($deck === null) {
             $deck = new Deck();
-        }        
-    
+        }
+
         if ($deck instanceof Deck) {
             $deck->shuffle();
             $session->set('deck', $deck);
-            
+
             $cards = $deck->getCards();
-    
+
             $cardsData = array_map(function ($card) {
                 return [
                     'color' => $card->getColor(),
                     'value' => $card->getValue(),
                 ];
             }, $cards);
-    
+
             $jsonResponse = new JsonResponse(['shuffled_deck' => $cardsData]);
             $jsonResponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
             return $jsonResponse;
         }
-    
+
         return new JsonResponse(['error' => 'Failed to shuffle deck'], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
     }
-    
+
 
 
     #[Route("/api/deck/draw", name: "draw_one_card", methods: ["POST", "GET"])]
