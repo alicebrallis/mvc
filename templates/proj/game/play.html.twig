@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+{% block title %}Magic number{% endblock %}
+{% block body %}
+    <header class="new-header">
+        <span class="site-title">Black Jack</span>
+    </header>
+    <h1 class="h1">Välkommen <b>{{ data.playerName }}</b> till Black Jack!</h1>
+       <p class="p">Aktuell insats: <b>{{ data.betAmount }}kr</b> </p>
+
+    {% if data.handData is not empty %}
+        {% dump(data.handValue) %}
+        <h2 class="h2">Dina drag:</h2>
+        <ul>
+            {% for card in data.handData %}
+                <li class="li">{{ card.color }} {{ card.value }}</li>
+            {% endfor %}
+            {% if data.handValue is defined %}
+                <p>Handvärde: {{ data.handValue }}</p>
+                {% if data.handValue > 21 %}
+                    <h4 class="h4">{{ data.gameOver }}</h4>
+                {% endif %}
+            {% endif %}
+        </ul>
+    {% endif %}
+<h2 class="h2">Bankirens drag:</h2>
+<ul>
+    {% for card in data.drawnBankerCards %}
+       <li class="li">{{ card.color }} {{ card.value }}</li>
+{% endfor %}
+
+<p>Bankirens handvärde: {{ data.bankerHandValue }}</p>
+
+    <form action="{{ path('make_move') }}" method="post">
+        <label class="label" for="handCount">Antal händer att spela med (max 3):</label>
+        <input class="input" type="number" id="handCount" name="handCount" min="1" max="3" value="1">
+        <button class="button" type="submit" name="action" value="hit">Spela händer</button>
+        <button class="button" type="submit" name="action" value="invest">Satsa</button>
+        {% for message in app.flashes('success') %}
+            <p class="p">{{ message }}</p>
+        {% endfor %}
+        <button class="button" type="submit" name="action" value="stand">Stanna</button>
+    </form>
+{% endblock %}

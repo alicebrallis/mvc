@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <header class="new-header">
+        <span class="site-title">Black Jack</span>
+    </header>
+    <h1 class="h1">Resultat för spelomgången</h1>
+
+    <p class="p">Spelarens handvärde: {{ playerHandValue }}</p>
+    <p class="p">Spelarens kort:</p>
+    <ul class="uls">
+        {% for card in playerCards %}
+            <li class="li">{{ card.getColor() }} {{ card.getValue() }}</li>
+        {% endfor %}
+    </ul>
+
+    <p class="p">Bankirens handvärde: {{ bankerHandValue }}</p>
+    <p class="p">Bankirens kort:</p>
+    <ul class="uls">
+        {% for card in bankerCards %}
+            <li class="li">{{ card.getColor() }} {{ card.getValue() }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if result == 'Spelare' %}
+        <h2 class="h2">Resultat: Spelaren vinner</h2>
+        <h2 class="congrats">Grattis {{ player_name }}, du vann!</h2>
+        {% set newBankAccount = bankAccount + betAmount %}
+        <h2 class="h2">Du har vunnit {{ betAmount }} kronor! Din nya bankbalans är: <b>{{ newBankAccount }}kr</b></h2>
+    {% elseif result == 'Bankir' %}
+        <h2 class="h2">Resultat: Bankiren vinner</h2>
+        <h2 class="sorry">Sorry! Bankiren vann</h2>
+       {% set newBankAccount = bankAccount - betAmount %}
+    <h2 class="h2">Du har förlorat {{ betAmount }} kronor. Din bankbalans är: <b>{{ newBankAccount }}kr</b></h2>
+    {% elseif result == 'Ingen vinnare' %}
+        <h2 class="h2">Resultat: Ingen vinnare</h2>
+        <h2 class="sorry">Ingen vinner!</h2>
+        <h2 class="h2">Ingen vinnare denna gång. Din bankbalans är oförändrad: <b>{{ bankAccount }}kr</b></h2>
+    {% else %}
+        <h2 class="h2">Resultat: Oavgjort</h2>
+        <h2 class="sorry">Oavgjort!</h2>
+        <h2 class="h2">Det är oavgjort denna gång. Din bankbalans är oförändrad: <b>{{ bankAccount }}kr</b></h2>
+    {% endif %}
+    <a href="{{ path('proj/game') }}" class="btn btn-primary">Börja om</a>
+{% endblock %}

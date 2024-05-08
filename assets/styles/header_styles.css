@@ -1,0 +1,10 @@
+/* header_styles.css */
+
+.new-header .site-title {
+    background-size: cover;
+    font-weight: 800;
+    word-spacing: 1.5mm;
+    font-size: 17px;
+    font-family: "Montserrat", sans-serif;
+    color: #125ab1;
+}

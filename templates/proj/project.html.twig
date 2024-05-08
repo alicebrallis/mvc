@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }} {# Behåll länken till den befintliga stylesheet-filen #}
+    <link rel="stylesheet" href="{{ asset('css/header_styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="main">
+<header class="new-header">
+            <span class="site-title">Kmom07/10</span>
+        </header>
+    <h1 class="h1">Projekt och examination</h1>
+    <p class="p">Fokus för detta projekt har varit att skapa kortspelet Black Jack med de korrekta reglerna för spelet. Nedan i menyn kan du välja att antingen påbörja spelet 'Black Jack' eller varför inte läsa på om reglerna innan du börjar spelet 'Läs mer om projektet'?</p>
+    <nav class="nav">
+        <ul class="ul">
+            <li class="list">  <a href="{{ path('proj/game') }}">Black Jack</a></li>
+                 <li class="list">  <a href="{{ path('proj/about') }}">Läs mer om projektet</a></li>
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block footer %}
+    <footer class="footer">
+        <h5 class="h5">Denna sidan är Copyright © av mig.  Manualer: <h5>
+         <a href="{{ 'https://html.spec.whatwg.org/' }}"> <b>HTML standard </a> <a href="{{ 'https://www.php.net/manual/en/index.php' }}"> <b>PHP</a>
+    </footer>
+    </div>
+{% endblock %}

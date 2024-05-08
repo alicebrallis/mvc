@@ -1,0 +1,30 @@
+    {% extends "base.html.twig" %}
+
+    {% block title %}Magic number{% endblock %}
+
+    {% block body %}
+    <header class="new-header">
+                <span class="site-title">Black Jack</span>
+            </header>
+    <h1 class="h1">Bankirens spel</h1>
+    <p class="p">Bankirens handvärde: {{ bankerHandValue }}</p>
+    <p class="p">Dragna kort för bankiren:</p>
+    <ul>
+        {% for card in drawnBankerCards %}
+            <li class="li">{{ card.getColor() }} {{ card.getValue() }}</li>
+        {% endfor %}
+    </ul>
+    {% if drawnBankerCards is empty %}
+        <p class="p">Inga kort har dragits ännu.</p>
+    {% endif %}
+    
+
+
+   <form action="{{ path('banker_play') }}" method="post">
+    <button class="button" type="submit" name="action" value="result">Se resultat</button>
+</form>
+
+
+
+
+    {% endblock %}

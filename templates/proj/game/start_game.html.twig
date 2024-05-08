@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Magic number{% endblock %}
+
+{% block body %}
+<header class="new-header">
+            <span class="site-title">Black Jack</span>
+        </header>
+   <h1 class="h1">[START]</h1>
+<p class="p">För att börja spela spelet kan du börja med att ange ditt spelnamn och din satsning </p>
+
+<form  class="form" method="post" action="">
+     <label for="player_name">Ange ditt spelarnamn:</label><br>
+        <input class="input" type="text" id="player_name" name="player_name" required><br><br>
+        <p class="p">På ditt bankkonto har du <b>100kr</b> totalt. Vänligen ange din satsning nedan.</p>
+        <label for="bet_amount">Ange din satsning:</label><br>
+        <input class="input" type="number" id="bet_amount" name="bet_amount" min="1" max="100" required><br><br>
+
+        <button class="button" type="submit" name="action" value="play">Börja spela</button>
+
+</form>
+{% endblock %}

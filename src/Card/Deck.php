@@ -62,8 +62,24 @@ class Deck extends Card
         return $oneCard;
     }
 
+    public function getTwoCards(): array
+    {
+        $cards = [];
+        $cards[] = $this->getOneCard(); // Dra första kortet
+        $cards[] = $this->getOneCard(); // Dra andra kortet
+        return $cards;
+    }
 
+    public function getThreeCards(): array
+    {
+        $cards = [];
+        $cards[] = $this->getOneCard(); // Dra första kortet
+        $cards[] = $this->getOneCard(); // Dra andra kortet
+        $cards[] = $this->getOneCard(); // Dra tredje kortet
+        return $cards;
+    }
 
+    
 
     /**
      * Beräknar totalvärdet av given lista med kort.
@@ -118,6 +134,26 @@ class Deck extends Card
             return 12;
         } elseif ($value === 'Kung') {
             return 13;
+        } else {
+            return (int)$value;
+        }
+    }
+
+
+
+    /**
+     * Beräknar värdet av ett kort baserat på dess värde.
+     *
+     * @param Card $card Kortet vars värde ska beräknas.
+     * @return int Värdet av kortet enligt kortspelet 21-reglerna.
+     */
+    public function calculateCardValueBlackjack(Card $card): int
+    {
+
+        $value = $card->getValue();
+
+        if ($value === 'Knekt' || 'Dam' || 'Kung') {
+            return 10;
         } else {
             return (int)$value;
         }
@@ -322,8 +358,80 @@ class Deck extends Card
         ]);
     }
 
+    public function calculateHandValue(array $hand): int {
+        $totalValue = 0;
+        $numberOfAces = 0;
+    
+        foreach ($hand as $card) {
+            $value = $card->getValue();
+            if ($value === 'Ess') {
+                $numberOfAces++;
+            } else {
+                $totalValue += min(10, $value);
+            }
+        }
+    
+        $totalValue += $numberOfAces;
+    
+        for ($i = 0; $i < $numberOfAces; $i++) {
+            if ($totalValue + 10 <= 21) {
+                $totalValue += 10;
+            }
+        }
+
+    
+        return $totalValue;
+    }
+
+    public function determineWinner(int $playerHandValue, int $bankerHandValue): string
+    {
+        if ($playerHandValue > 21 && $bankerHandValue > 21) {
+            return "Ingen vinnare";
+        } elseif ($playerHandValue > 21) {
+            return "Bankir";
+        } elseif ($bankerHandValue > 21) {
+            return "Spelare";
+        }
+        if ($playerHandValue > $bankerHandValue) {
+            return "Spelare";
+        } elseif ($playerHandValue < $bankerHandValue) {
+            return "Bankir";
+        } else {
+            return "Oavgjort";
+        }
+    }
+    
+
+    /**
+     * Drar tre slumpmässiga kort från kortleken.
+     *
+     * @return array En array med tre slumpmässiga kort.
+     */
+    public function drawThreeCards(): array
+    {
+        $this->shuffle();
+
+        $drawnCards = [];
+
+        for ($i = 0; $i < 3; $i++) {
+            $drawnCards[] = array_pop($this->cards);
+        }
+        return $drawnCards;
+    }
 
 
-
-
+    /**
+     * Drar två slumpmässiga kort från kortleken.
+     *
+     * @return array En array med tre slumpmässiga kort.
+     */
+    public function drawTwoCards(): array
+    {
+        $this->shuffle();
+        $drawnCards = [];
+        for ($i = 0; $i < 2; $i++) {
+            $drawnCards[] = array_pop($this->cards);
+        }
+        return $drawnCards;
+    }
 }

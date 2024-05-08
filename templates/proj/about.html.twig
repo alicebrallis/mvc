@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Magic number{% endblock %}
+
+{% block body %}
+<header class="new-header">
+            <span class="site-title">Projektidé</span>
+        </header>
+    <h1 class="h1">Kortspel: Black Jack</h1>
+    <p class="p">
+    Fokus för detta projekt har varit att skapa kortspelet Black Jack med de korrekta reglerna för spelet. 
+Blackjack är ett populärt kortspel där spelaren tävlar mot bankiren. Målet är att få en hand med en total poängsumma nära eller exakt 21, utan att överstiga detta. Varje kort har ett värde: numrerade kort är värda deras numeriska värde, ansiktskort är värda 10 och ess kan vara värda antingen 1 eller 11, beroende på vad som är fördelaktigast.
+
+Spelet börjar med att spelaren och bankiren får två kort var. Spelaren kan sedan välja att "stanna" och behålla sin nuvarande hand, eller "ta" ett ytterligare kort för att förbättra sin hand. Spelaren kan fortsätta att ta kort tills de antingen väljer att stanna eller går över 21 poäng, vilket leder till att de förlorar.
+
+Efter att spelaren har stannat, är det bankirens tur att agera. Bankiren måste följa strikta regler om när de ska ta och stanna baserat på värdena på sina kort och spelarens hand.
+
+Om spelaren har en hand som är närmare 21 än bankirens hand eller om bankiren går över 21 poäng, vinner spelaren. Om bankiren har en hand som är närmare 21 än spelarens hand, eller om spelaren går över 21 poäng, vinner bankiren.
+
+Om spelaren och bankiren har exakt samma poäng, blir det oavgjort eller "push", och spelaren får tillbaka sin insats.
+
+Spelet är en blandning av skicklighet och tur, och det gäller att fatta kloka beslut för att maximera sina vinstchanser.
+</p>
+{% endblock %}
