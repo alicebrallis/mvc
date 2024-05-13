@@ -17,7 +17,7 @@ Kort beskrivning av projektet och dess syfte.
 ## Om projektet
 
 Projektbeskrivning
-Projektnamn: Mvc projekt
+Projektnamn: Kmom07/10: Projekt och examination: Kortspel (Black jack)
 
 Syfte: Det här projektet handlar om att skapa en webbapplikation där användare kan spela Blackjack online. Tanken är att lära sig hur man bygger en sådan applikation med hjälp av PHP och Symfony Framework.
 
