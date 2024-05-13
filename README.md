@@ -4,9 +4,10 @@ Kort beskrivning av projektet och dess syfte.
 
 ## Badges
 
-[![Scrutinizer Build](https://img.shields.io/scrutinizer/build/g/projekt/namn.svg)](https://scrutinizer-ci.com/g/projekt/namn/build-status/master)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/projekt/namn.svg)](https://scrutinizer-ci.com/g/projekt/namn/?branch=master)
-[![Scrutinizer Code Coverage](https://img.shields.io/scrutinizer/coverage/g/projekt/namn.svg)](https://scrutinizer-ci.com/g/projekt/namn/?branch=master)
+[![Scrutinizer Build](https://img.shields.io/scrutinizer/build/g/alicebrallis/mvc.svg)](https://scrutinizer-ci.com/g/alicebrallis/mvc/build-status/master)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/alicebrallis/mvc.svg)](https://scrutinizer-ci.com/g/alicebrallis/mvc/?branch=master)
+[![Scrutinizer Code Coverage](https://img.shields.io/scrutinizer/coverage/g/alicebrallis/mvc.svg)](https://scrutinizer-ci.com/g/alicebrallis/mvc/?branch=master)
+
 
 ## Innehåll
 
