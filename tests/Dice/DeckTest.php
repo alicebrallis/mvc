@@ -411,7 +411,143 @@ public function testDrawMoreCardsThanAvailable(): void
         $sortedCards = $sortedDeck->getCards();
         $this->assertEquals($sortedCards, $shuffledCards);
     }
+
+    public function testCalculateHandValueWithAces()
+    {
+        $deck = new Deck();
+        $hand = [
+            new Card('Spader', '2'),
+            new Card('Hjärter', 'Kung'),
+            new Card('Ruter', 5)
+        ];
+
+        $result = $deck->calculateHandValue($hand);
+    
+
+        $this->assertEquals(17, $result);
+    }
     
     
+    public function testDetermineWinner()
+    {
+        $deck = new Deck();
+        $playerHandValue = 20;
+        $bankerHandValue = 18;
+
+        $this->assertEquals('Spelare', $deck->determineWinner($playerHandValue, $bankerHandValue));
+
+        $this->assertEquals('Bankir', $deck->determineWinner(17, 20));
+
+        $this->assertEquals('Oavgjort', $deck->determineWinner(18, 18));
+    }
+
+    public function testDrawThreeCardsReturnsArrayWithThreeCards()
+    {
+        $deck = new Deck();
+        $cards = $deck->drawThreeCards();
+
+        $this->assertCount(3, $cards);
+        foreach ($cards as $card) {
+            $this->assertInstanceOf(Card::class, $card);
+        }
+    }
+
+    public function testDrawTwoCardsReturnsArrayWithTwoCards()
+    {
+        $deck = new Deck();
+        $cards = $deck->drawTwoCards();
+
+        $this->assertCount(2, $cards);
+        foreach ($cards as $card) {
+            $this->assertInstanceOf(Card::class, $card);
+        }
+    }
+
+    public function testGetTwoCardsReturnsArrayWithTwoCards()
+    {
+        $cardDeck = new Deck();
+        $cards = $cardDeck->getTwoCards();
+
+        $this->assertCount(2, $cards);
+        foreach ($cards as $card) {
+            $this->assertInstanceOf(Card::class, $card);
+        }
+    }
+
+    public function testGetThreeCardsReturnsArrayWithThreeCards()
+    {
+        $cardDeck = new Deck();
+        $cards = $cardDeck->getThreeCards();
+
+        $this->assertCount(3, $cards);
+        foreach ($cards as $card) {
+            $this->assertInstanceOf(Card::class, $card);
+        }
+    }
+
+    public function testCalculateCardValueBlackjack()
+    {
+        $calculator = new Deck();
+
+        $faceCard = new Card('Dam', 'Spader');
+        $this->assertEquals(10, $calculator->calculateCardValueBlackjack($faceCard));
+    }
+
+    public function testCalculateTotalValueWithNullCards()
+    {
+        $deck = new Deck();
+        $cards = [
+            new Card('Spader', 'Knekt'),
+            null,
+            new Card('Hjärter', '10'),
+            null,
+            new Card('Ruter', 'Ess'),
+        ];
+    
+        $totalValue = $deck->calculateTotalValue($cards);
+    
+        $this->assertEquals(21, $totalValue);
+    }
+    
+
+    public function testCalculateCardValueAsInteger()
+{
+    $deck = new Deck();
+    $card = new Card('Spader', '10');
+
+    $value = $deck->calculateCardValueBlackjack($card);
+
+    $this->assertEquals(10, $value);
+}
+    public function testNoWinnerWhenBothHandValuesAreOver21()
+    {
+        $playerHandValue = 22;
+        $bankerHandValue = 23;
+        $game = new Deck();
+
+        $result = $game->determineWinner($playerHandValue, $bankerHandValue);
+
+        $this->assertEquals("Ingen vinnare", $result);
+    }
+
+    public function testPlayerWinsWhenBankerHandValueIsOver21()
+    {
+        $playerHandValue = 20;
+        $bankerHandValue = 22;
+        $game = new Deck();
+
+        $result = $game->determineWinner($playerHandValue, $bankerHandValue);
+        $this->assertEquals("Spelare", $result);
+    }
+
+    public function testBankerWinsWhenPlayerHandValueIsOver21()
+    {
+        $playerHandValue = 22;
+        $bankerHandValue = 20;
+        $game = new Deck();
+        $result = $game->determineWinner($playerHandValue, $bankerHandValue);
+        $this->assertEquals("Bankir", $result);
+    }
+
 
 }
