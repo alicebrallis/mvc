@@ -34,7 +34,7 @@ Applikationen är uppdelad i tre delar:
 
 Modell (Model): I mappen src/Deck och src/Card hittar vi logiken för själva Blackjack-spelet. Här finns klasser som hanterar spelets regler, beräkning av handvärden och hantering av kortleken. Modellen är ansvarig för att lagra och behandla speldata.
 
-Vy (View): I templates mappen ligger våra Twig-filer, som ansvarar för att generera HTML-sidorna och visa användargränssnittet för spelaren. Dessa mallar renderas av webbläsaren och kommunicerar med kontrollerna för att hämta nödvändig data för att visa korrekt information för användaren.
+Vy (View): I templates/proj mappen ligger våra Twig-filer för projektet, som ansvarar för att generera HTML-sidorna och visa användargränssnittet för spelaren. Dessa mallar renderas av webbläsaren och kommunicerar med kontrollerna för att hämta nödvändig data för att visa korrekt information för användaren.
 
 Kontroller (Controller): I src/ProjectController använderar användarens input och styr applikationens beteende. De tar emot input från användaren och bearbetar den med hjälp av modellen och skickar sedan resultatet tillbaka till användargränssnittet för visning.
 
@@ -52,10 +52,6 @@ För att klona och starta projektet lokalt, följ dessa steg:
    ```bash
    git clone https://github.com/alicebrallis/mvc.git
 
-
-   Klona projektet: Öppna terminalen och kör följande kommando för att klona projektet till din lokala maskin:
-   
-   git clone https://github.com/alicebrallis/mvc.git
 2. Navigera till projektmappen: Gå till den klonade mappen med:
     cd mvc
     
